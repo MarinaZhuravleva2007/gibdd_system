@@ -1,0 +1,550 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    :root {
+        --dark-blue: #0f172a;
+        --dark-blue-light: #1a2a4a;
+        --dark-blue-card: #0a1628;
+        --gold: #c9a84c;
+        --gold-light: #e8d5a3;
+    }
+
+    .profile-wrapper {
+        background: #f1f5f9;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+
+    .profile-card {
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 15px 40px rgba(10, 22, 40, 0.12);
+        overflow: hidden;
+        border: none;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-header-custom {
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0f172a 100%);
+        padding: 2rem 2.5rem;
+        border-bottom: 3px solid var(--gold);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .profile-header-custom h3 {
+        color: #ffffff;
+        font-weight: 700;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+
+    .profile-header-custom h3 i {
+        color: var(--gold);
+    }
+
+    .btn-edit-custom {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: #ffffff;
+        padding: 0.6rem 1.8rem;
+        border-radius: 40px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-edit-custom:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #0a1628;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(201, 168, 76, 0.3);
+    }
+
+    .profile-body {
+        padding: 2.5rem;
+    }
+
+    .profile-avatar-custom {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+        color: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 0 auto;
+        border: 4px solid var(--gold);
+        box-shadow: 0 8px 25px rgba(10, 22, 40, 0.25);
+        transition: transform 0.3s ease;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .profile-avatar-custom:hover {
+        transform: scale(1.05) rotate(-3deg);
+    }
+
+    .badge-role-custom {
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+        color: var(--gold);
+        padding: 0.5rem 1.5rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: inline-block;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        letter-spacing: 0.5px;
+    }
+
+    .section-title-custom {
+        color: #0a1628;
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .section-title-custom i {
+        color: var(--gold);
+    }
+
+    .info-item-custom {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eef2f6;
+        transition: background 0.2s;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-radius: 6px;
+    }
+
+    .info-item-custom:hover {
+        background: #f8fafc;
+    }
+
+    .info-item-custom strong {
+        color: #475569;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .info-item-custom span {
+        color: #1e293b;
+        font-weight: 500;
+        text-align: right;
+        max-width: 60%;
+    }
+
+    .info-item-custom .font-monospace {
+        font-family: 'Courier New', monospace;
+        font-weight: 600;
+        color: #0a1628;
+    }
+
+    .info-card-custom {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        transition: all 0.2s;
+        border: 1px solid #eef2f6;
+    }
+
+    .info-card-custom:hover {
+        background: #f1f5f9;
+        border-color: var(--gold);
+    }
+
+    .info-card-custom small {
+        color: #94a3b8;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.65rem;
+        letter-spacing: 0.5px;
+    }
+
+    .info-card-custom h5 {
+        color: #0a1628;
+        font-weight: 700;
+        margin: 0.25rem 0 0 0;
+        font-size: 1rem;
+    }
+
+    .license-plate-custom {
+        background: linear-gradient(145deg, #FFD966 0%, #FFC107 100%);
+        border-radius: 10px;
+        padding: 10px 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.5);
+        border: 2px solid #B8860B;
+        position: relative;
+        font-family: 'Arial Black', 'Impact', sans-serif;
+        transition: transform 0.3s ease;
+    }
+
+    .license-plate-custom:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .license-plate-custom::before {
+        content: '';
+        position: absolute;
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 75%;
+        background: linear-gradient(90deg, #B8860B, #FFD700);
+        border-radius: 4px;
+    }
+
+    .license-plate-custom::after {
+        content: '';
+        position: absolute;
+        right: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 75%;
+        background: linear-gradient(90deg, #FFD700, #B8860B);
+        border-radius: 4px;
+    }
+
+    .plate-main-custom {
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: 5px;
+        color: #1a1a1a;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+        background: rgba(255,255,255,0.25);
+        padding: 0 8px;
+        border-radius: 4px;
+    }
+
+    .plate-region-custom {
+        font-size: 22px;
+        font-weight: 800;
+        background: white;
+        padding: 2px 12px;
+        border-radius: 6px;
+        color: #1a1a1a;
+        border: 1px solid #B8860B;
+        font-family: 'Courier New', monospace;
+    }
+
+    .plate-country-custom {
+        font-size: 11px;
+        font-weight: 800;
+        color: #1a1a1a;
+        letter-spacing: 1.5px;
+        font-family: Arial, sans-serif;
+    }
+
+    .plate-flag-custom {
+        font-size: 20px;
+        filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.15));
+    }
+
+    .alert-warning-custom {
+        background: #fffbeb;
+        border-left: 4px solid #f59e0b;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        color: #78350f;
+        font-size: 0.9rem;
+    }
+
+    .alert-warning-custom a {
+        color: #0a1628;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    .alert-warning-custom a:hover {
+        color: var(--gold);
+    }
+
+    .alert-info-custom {
+        background: #eef2ff;
+        border-left: 4px solid #1a2a4a;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        color: #1e293b;
+        font-size: 0.9rem;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .profile-header-custom {
+            flex-direction: column;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .profile-body {
+            padding: 1.5rem;
+        }
+        .profile-avatar-custom {
+            width: 80px;
+            height: 80px;
+            font-size: 2.5rem;
+        }
+        .plate-main-custom {
+            font-size: 24px;
+            letter-spacing: 3px;
+        }
+        .plate-region-custom {
+            font-size: 16px;
+            padding: 2px 8px;
+        }
+        .license-plate-custom {
+            gap: 10px;
+            padding: 6px 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .info-item-custom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+        .info-item-custom span {
+            text-align: left;
+            max-width: 100%;
+        }
+    }
+
+    @media print {
+        .btn-edit-custom {
+            display: none !important;
+        }
+        .profile-header-custom {
+            background: #f8f9fa !important;
+            border-bottom: 2px solid #000 !important;
+        }
+        .profile-header-custom h3 {
+            color: #000 !important;
+        }
+        .profile-card {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+        }
+        .badge-role-custom {
+            background: #f8f9fa !important;
+            color: #000 !important;
+            border: 1px solid #000 !important;
+        }
+        .profile-avatar-custom {
+            border-color: #000 !important;
+            color: #000 !important;
+        }
+        .license-plate-custom {
+            border: 2px solid #000 !important;
+        }
+        .section-title-custom {
+            border-bottom-color: #000 !important;
+        }
+        .section-title-custom i {
+            color: #000 !important;
+        }
+        .info-item-custom {
+            border-bottom-color: #dee2e6 !important;
+        }
+        .info-card-custom {
+            background: #f8f9fa !important;
+            border-color: #dee2e6 !important;
+        }
+    }
+</style>
+
+<div class="profile-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="profile-card">
+
+                    <!-- ЗАГОЛОВОК -->
+                    <div class="profile-header-custom">
+                        <h3>
+                            <i class="fas fa-user-circle"></i>
+                            Мой профиль
+                        </h3>
+                        <a href="{% url 'edit_profile' %}" class="btn-edit-custom">
+                            <i class="fas fa-edit me-2"></i>Редактировать профиль
+                        </a>
+                    </div>
+
+                    <!-- ТЕЛО -->
+                    <div class="profile-body">
+
+                        <!-- АВАТАР + РОЛЬ -->
+                        <div class="row align-items-center mb-4 pb-3 border-bottom">
+                            <div class="col-md-3 text-center">
+                                <div class="profile-avatar-custom mb-2">
+                                    {{ user.username.0|upper }}
+                                </div>
+                                <span class="badge-role-custom">
+                                    {% if user.role == 'driver' %}
+                                        <i class="fas fa-car me-2"></i>Водитель
+                                    {% elif user.role == 'inspector' %}
+                                        <i class="fas fa-user-shield me-2"></i>Инспектор ДПС
+                                    {% else %}
+                                        <i class="fas fa-crown me-2"></i>Руководитель
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="grid-2">
+                                    <div class="info-card-custom">
+                                        <small>ФИО</small>
+                                        <h5>{{ user.full_name }}</h5>
+                                    </div>
+                                    <div class="info-card-custom">
+                                        <small>Логин</small>
+                                        <h5>{{ user.username }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ЛИЧНЫЕ ДАННЫЕ -->
+                        <h4 class="section-title-custom">
+                            <i class="fas fa-user"></i>Личные данные
+                        </h4>
+                        <div class="grid-2 mb-4">
+                            <div class="info-item-custom">
+                                <strong>Телефон:</strong>
+                                <span>{{ user.phone|default:"Не указан" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Дата рождения:</strong>
+                                <span>{{ user.birth_date|date:"d.m.Y"|default:"Не указана" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Email:</strong>
+                                <span>{{ user.email|default:"Не указан" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Место жительства:</strong>
+                                <span>{{ user.address|default:"Не указано"|truncatechars:40 }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Дата регистрации:</strong>
+                                <span>{{ user.date_joined|date:"d.m.Y H:i" }}</span>
+                            </div>
+                        </div>
+
+                        <!-- ДАННЫЕ АВТОМОБИЛЯ -->
+                        {% if user.role == 'driver' %}
+                        <h4 class="section-title-custom">
+                            <i class="fas fa-car"></i>Данные автомобиля
+                        </h4>
+                        <div class="grid-2 mb-4">
+                            <div class="info-item-custom">
+                                <strong>Марка:</strong>
+                                <span>{{ user.car_brand|default:"Не указана" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Модель:</strong>
+                                <span>{{ user.car_model|default:"Не указана" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Год выпуска:</strong>
+                                <span>{{ user.car_year|default:"Не указан" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>Категории ТС:</strong>
+                                <span>{{ user.car_categories|default:"Не указаны" }}</span>
+                            </div>
+                            <div class="info-item-custom">
+                                <strong>VIN-номер:</strong>
+                                <span class="font-monospace">{{ user.vin_number|default:"Не указан" }}</span>
+                            </div>
+                        </div>
+
+                        <!-- ГОСНОМЕР -->
+                        <div class="info-item-custom align-items-center py-3 border-top pt-3">
+                            <strong>Государственный номер:</strong>
+                            {% if user.full_license_plate %}
+                            <div class="license-plate-custom">
+                                <div class="plate-main-custom">
+                                    {{ user.full_license_plate|slice:":6" }}
+                                </div>
+                                <div class="plate-region-custom">
+                                    {{ user.full_license_plate|slice:"6:" }}
+                                </div>
+                                <div class="plate-country-custom">RUS</div>
+                                <div class="plate-flag-custom">🇷🇺</div>
+                            </div>
+                            {% else %}
+                            <div class="alert-warning-custom">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <strong>Госномер не указан!</strong>
+                                <a href="{% url 'edit_profile' %}" class="ms-2">Указать номер →</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        <div class="alert-info-custom">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Данные автомобиля не требуются для вашей роли.
+                        </div>
+                        {% endif %}
+
+                        <!-- СЛУЖЕБНАЯ ИНФОРМАЦИЯ -->
+                        {% if user.role != 'driver' %}
+                        <h4 class="section-title-custom mt-4">
+                            <i class="fas fa-id-card"></i>Служебная информация
+                        </h4>
+                        <div class="grid-2 mb-4">
+                            <div class="info-item-custom">
+                                <strong>🆔 Номер удостоверения:</strong>
+                                <span class="font-monospace">{{ user.service_id|default:"Не указан" }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if user.role == 'inspector' and user.is_dismissed %}
+                        <div class="alert alert-danger mt-3">
+                            <strong>🔒 Внимание!</strong> Ваши полномочия ограничены руководителем.
+                            <a href="{% url 'inspector_dismissed_page' %}" class="alert-link">Подробнее</a>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+{% endblock %}

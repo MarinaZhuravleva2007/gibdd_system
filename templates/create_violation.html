@@ -1,0 +1,451 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if user.role == 'inspector' and user.is_dismissed %}
+<div class="container py-4">
+    <div class="alert alert-danger text-center">
+        <i class="fas fa-ban fa-2x mb-2"></i>
+        <h4>Доступ запрещен</h4>
+        <p>Вы уволены и не можете создавать новые нарушения.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</div>
+{% else %}
+<style>
+    :root {
+        --dark-blue: #0f172a;
+        --dark-blue-light: #1a2a4a;
+        --dark-blue-card: #0a1628;
+    }
+
+    body {
+        background: #f1f5f9;
+    }
+
+    .card-protocol {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(10, 22, 40, 0.15);
+        overflow: hidden;
+        border: none;
+    }
+
+    .card-header-protocol {
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0f172a 100%);
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        border-bottom: 2px solid rgba(255,255,255,0.05);
+    }
+
+    .card-header-protocol h4 {
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+
+    .card-header-protocol small {
+        opacity: 0.6;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    .plate-container {
+        display: flex;
+        border: 3px solid #333;
+        border-radius: 8px;
+        width: fit-content;
+        background: white;
+        padding: 2px;
+        overflow: hidden;
+        align-items: center;
+    }
+    .plate-main-input {
+        font-size: 32px;
+        font-weight: 900;
+        width: 140px;
+        border: none;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 0 5px;
+        outline: none;
+        background: transparent;
+    }
+    .plate-divider {
+        width: 3px;
+        background: #333;
+        height: 100%;
+    }
+    .plate-region-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70px;
+        background-color: #f8f9fa;
+        padding: 5px 2px;
+        height: 100%;
+        justify-content: center;
+    }
+    .region-input {
+        width: 100%;
+        border: none;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        outline: none;
+        background: transparent;
+    }
+
+    .article-search-zone {
+        background: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        border-radius: 12px;
+        padding: 20px;
+        cursor: pointer;
+        transition: 0.2s;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    .article-search-zone:hover { border-color: #0d6efd; background: #f0f7ff; }
+    .article-search-zone i { font-size: 1.5rem; margin-bottom: 10px; color: #0d6efd; }
+
+    .field-errors {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+    .hidden-fields { display: none; }
+
+    /* ===== ТЁМНО-СИНИЕ КНОПКИ ===== */
+    .btn-submit-main {
+        background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);
+        border: none;
+        color: white;
+        font-weight: 700;
+        padding: 1rem;
+        border-radius: 40px;
+        transition: all 0.3s;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+        letter-spacing: 1px;
+    }
+    .btn-submit-main:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.4);
+        background: linear-gradient(135deg, #0a1628 0%, #0f172a 100%);
+        color: white;
+    }
+
+    .btn-outline-secondary-custom {
+        background: transparent;
+        border: 1px solid #1a2a4a;
+        color: #1a2a4a;
+        padding: 0.5rem 1.2rem;
+        border-radius: 40px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn-outline-secondary-custom:hover {
+        background: #1a2a4a;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    .form-control:focus {
+        border-color: #1a2a4a;
+        box-shadow: 0 0 0 0.25rem rgba(26, 42, 74, 0.25);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 0.9rem;
+    }
+
+    .text-muted-custom {
+        color: #64748b;
+        font-size: 0.75rem;
+    }
+
+    .vin-optional {
+        background: #f8fafc;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        color: #64748b;
+        border: 1px dashed #cbd5e1;
+        display: inline-block;
+    }
+
+    .comment-hint {
+        background: #f8fafc;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        color: #64748b;
+        border: 1px dashed #cbd5e1;
+        display: inline-block;
+    }
+
+    /* Стили для обязательных полей */
+    .required-field::after {
+        content: " *";
+        color: #dc3545;
+        font-weight: 700;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="card-protocol">
+        <div class="card-header-protocol">
+            <h4>ЭЛЕКТРОННЫЙ ПРОТОКОЛ</h4>
+            <small>ГИБДД • Официальный документ</small>
+        </div>
+        <div class="card-body p-4 p-lg-5">
+            <form method="post" enctype="multipart/form-data" id="protocolForm">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}<br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-5">
+                        <label class="form-label required-field">ФИО Водителя</label>
+                        {{ form.driver_fio }}
+                        {% if form.driver_fio.errors %}
+                            <div class="field-errors">{% for error in form.driver_fio.errors %}{{ error }}<br>{% endfor %}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label required-field">Госномер ТС</label>
+                        <input type="text" name="car_plate" class="form-control" placeholder="А000АА777" value="{{ form.car_plate.value|default:'' }}" style="text-transform: uppercase;">
+                        {% if form.car_plate.errors %}
+                            <div class="field-errors">{% for error in form.car_plate.errors %}{{ error }}<br>{% endfor %}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label required-field">Дата и время нарушения</label>
+                        <input type="datetime-local" name="violation_datetime" class="form-control" value="{{ current_time }}" required>
+                        <small class="text-muted-custom">Укажите дату и время нарушения</small>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label required-field">Марка и модель ТС</label>
+                        {{ form.car_brand_model }}
+                        {% if form.car_brand_model.errors %}<div class="field-errors">{% for error in form.car_brand_model.errors %}{{ error }}<br>{% endfor %}</div>{% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label required-field">Место нарушения</label>
+                        {{ form.place }}
+                        {% if form.place.errors %}<div class="field-errors">{% for error in form.place.errors %}{{ error }}<br>{% endfor %}</div>{% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            VIN-номер
+                        </label>
+                        <input type="text" name="vin" id="id_vin_input" class="form-control" placeholder="XTA12345678901234" value="{{ form.vin.value|default:'' }}" style="text-transform: uppercase;" maxlength="17">
+                        <small class="text-muted-custom">17 символов (латиница и цифры)</small>
+                        {% if form.vin.errors %}
+                            <div class="field-errors">{% for error in form.vin.errors %}{{ error }}<br>{% endfor %}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- ===== СТРОКА 3: Статья + Сумма ===== -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label required-field">Номер статьи</label>
+                        {{ form.article_manual }}
+                        {% if form.article_manual.errors %}
+                            <div class="field-errors">{% for error in form.article_manual.errors %}{{ error }}<br>{% endfor %}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label required-field">Сумма штрафа</label>
+                        {{ form.amount_manual }}
+                        {% if form.amount_manual.errors %}
+                            <div class="field-errors">{% for error in form.amount_manual.errors %}{{ error }}<br>{% endfor %}</div>
+                        {% endif %}
+                        <small class="text-muted-custom">В рублях (например: 750)</small>
+                    </div>
+                </div>
+
+                <!-- ===== СТРОКА 4: Комментарий инспектора (НОВОЕ ПОЛЕ) ===== -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-12">
+                        <label class="form-label">
+                            <i class="fas fa-comment me-1"></i>
+                            Комментарий инспектора
+                            <span class="comment-hint">(необязательно)</span>
+                        </label>
+                        <textarea name="inspector_comment" id="id_inspector_comment" class="form-control" rows="3" placeholder="Введите дополнительные замечания, показания, особые отметки..." style="resize: vertical;">{{ form.inspector_comment.value|default:'' }}</textarea>
+                        <small class="text-muted-custom">Дополнительная информация, которую вы хотите внести в протокол</small>
+                    </div>
+                </div>
+
+                <!-- ===== ФОТО ===== -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Фото/видео доказательство</label>
+                    {{ form.evidence_img }}
+                    {% if form.evidence_img.errors %}<div class="field-errors">{% for error in form.evidence_img.errors %}{{ error }}<br>{% endfor %}</div>{% endif %}
+                    <small class="text-muted-custom">Поддерживаются JPG, PNG, GIF</small>
+                </div>
+
+                <!-- ===== КНОПКИ ===== -->
+                <button type="submit" class="btn btn-submit-main btn-lg w-100 rounded-pill mt-3">
+                    ЗАРЕГИСТРИРОВАТЬ ПРОТОКОЛ
+                </button>
+
+                <div class="d-flex justify-content-between mt-3 gap-2">
+                    <button type="submit" name="save_and_print" class="btn btn-outline-secondary-custom btn-sm px-4">
+                        <i class="fas fa-print me-1"></i> Сохранить и распечатать
+                    </button>
+                    <button type="submit" name="create_another" class="btn btn-outline-secondary-custom btn-sm px-4">
+                        <i class="fas fa-plus-circle me-1"></i> Создать еще один
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для статей -->
+<div class="modal fade" id="fineModal" tabindex="-1" aria-labelledby="fineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%); color: white;">
+                <h5 class="modal-title" id="fineModalLabel">Справочник КоАП РФ</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="articleSearchInput" class="form-control mb-3" placeholder="Начните вводить номер статьи или описание...">
+                <div id="articlesResult" class="list-group">
+                    <p class="text-muted text-center py-3">Введите запрос от 2 символов для поиска статей КоАП</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // ===== ВАЛИДАЦИЯ VIN =====
+        const vinInput = document.getElementById('id_vin_input');
+        if (vinInput) {
+            vinInput.addEventListener('input', function() {
+                // Убираем все кроме латиницы и цифр
+                this.value = this.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+                // Ограничиваем 17 символами
+                if (this.value.length > 17) {
+                    this.value = this.value.slice(0, 17);
+                }
+            });
+        }
+
+        // ===== ПОИСК СТАТЕЙ =====
+        const articleSearchInput = document.getElementById('articleSearchInput');
+        const articlesResultDiv = document.getElementById('articlesResult');
+        const hiddenArticleInput = document.getElementById('id_article');
+        const hiddenAmountInput = document.getElementById('id_amount');
+        const articleManualInput = document.getElementById('id_article_manual');
+        const amountManualInput = document.getElementById('id_amount_manual');
+
+        function fetchAndRenderArticles(query = '') {
+            const trimmedQuery = query.trim();
+
+            if (trimmedQuery.length === 0) {
+                articlesResultDiv.innerHTML = '<p class="text-muted text-center py-3">Введите запрос от 2 символов для поиска статей КоАП</p>';
+                return;
+            }
+
+            articlesResultDiv.innerHTML = '<p class="text-center py-3">Загрузка...</p>';
+
+            fetch(`/api/articles/?q=${encodeURIComponent(trimmedQuery)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    articlesResultDiv.innerHTML = '';
+                    if (data.length === 0) {
+                        articlesResultDiv.innerHTML = '<p class="text-muted text-center py-3">Статьи не найдены.</p>';
+                    } else {
+                        data.forEach(item => {
+                            const btn = document.createElement('button');
+                            btn.className = 'list-group-item list-group-item-action';
+                            btn.innerHTML = `
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>ст. ${item.number}</strong>
+                                    <span class="badge bg-primary fs-6">${item.cost} ₽</span>
+                                </div>
+                                <small class="text-muted">${item.description}</small>
+                            `;
+                            btn.onclick = (e) => {
+                                e.preventDefault();
+                                selectArticle(item);
+                            };
+                            articlesResultDiv.appendChild(btn);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки статей:', error);
+                    articlesResultDiv.innerHTML = '<p class="text-danger text-center py-3">Произошла ошибка при загрузке статей.</p>';
+                });
+        }
+
+        if (articleSearchInput) {
+            articleSearchInput.addEventListener('input', function() {
+                const query = this.value;
+                if (query.length >= 2 || query.length === 0) {
+                    fetchAndRenderArticles(query);
+                } else if (query.length === 1) {
+                    articlesResultDiv.innerHTML = '<p class="text-muted text-center py-3">Введите еще символ для поиска.</p>';
+                }
+            });
+        }
+
+        function selectArticle(item) {
+            if (hiddenArticleInput) hiddenArticleInput.value = item.number;
+            if (hiddenAmountInput) hiddenAmountInput.value = item.cost;
+
+            if (articleManualInput) articleManualInput.value = '';
+            if (amountManualInput) amountManualInput.value = '';
+
+            const modalElement = document.getElementById('fineModal');
+            if (modalElement && typeof bootstrap !== 'undefined') {
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+            }
+        }
+
+        const fineModal = document.getElementById('fineModal');
+        if (fineModal && typeof bootstrap !== 'undefined') {
+            fineModal.addEventListener('shown.bs.modal', function () {
+                if (articleSearchInput) {
+                    articleSearchInput.focus();
+                }
+            });
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

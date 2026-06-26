@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-4">
+                <div class="mb-3">
+                    <span class="badge rounded-pill px-3 py-2" style="background: linear-gradient(135deg, #9B59B6, #8E44AD, #6C3483);">
+                        <i class="fas fa-credit-card me-1"></i> Финансовые операции
+                    </span>
+                </div>
+                <h2 class="fw-bold mb-2" style="background: linear-gradient(135deg, #9B59B6, #BB8FCE, #D2B4DE); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                    Оплата штрафов ГИБДД
+                </h2>
+                <p class="text-muted">Официальные способы оплаты административных штрафов</p>
+            </div>
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+                <div class="card-header border-0 p-4" style="background: linear-gradient(135deg, #9B59B6, #8E44AD, #6C3483);">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle bg-white bg-opacity-25 p-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                            <i class="fas fa-gavel text-white fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 text-white fw-bold">Инструкция по оплате</h5>
+                            <small class="text-white-50">Официальный портал Госавтоинспекции</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4 p-lg-5">
+                    <div class="alert p-4 rounded-4 mb-4" style="background: linear-gradient(135deg, #F4ECF7, #E8DAEF); border-left: 4px solid #9B59B6;">
+                        <div class="d-flex gap-3">
+                            <i class="fas fa-info-circle fs-2" style="color: #9B59B6;"></i>
+                            <div>
+                                <strong class="fs-5" style="color: #6C3483;">Официальный источник</strong>
+                                <p class="mb-0 mt-1" style="color: #4A4A4A;">
+                                    Перейдите на официальный сайт <strong style="color: #9B59B6;">ГАИ (госавтоинспекция.рф)</strong>,
+                                    выберите раздел «Сервисы», перейдите на страницу <strong style="color: #9B59B6;">«Проверка штрафов»</strong>
+                                    и оплатите удобным для вас способом.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="fw-bold mb-4" style="color: #6C3483;">
+                        <i class="fas fa-wallet me-2"></i> Доступные способы оплаты
+                    </h4>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="payment-card h-100 rounded-4 p-4" style="background: linear-gradient(135deg, #ffffff, #FCF8FF); border: 1px solid #E8DAEF; transition: all 0.3s ease;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; background: linear-gradient(135deg, #9B59B6, #8E44AD);">
+                                        <i class="fas fa-laptop text-white fs-5"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-0" style="color: #6C3483;">Интернет-банкинг</h5>
+                                </div>
+                                <p class="text-muted mb-0">
+                                    Оплату можно совершить на сайтах банков — Сбербанк Онлайн, Т-Банк, ВТБ и другие банки предоставляют
+                                    возможность онлайн-платежей. Для этого необходимо ввести реквизиты платежа (номер постановления
+                                    или водительского удостоверения, номер автомобиля).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="payment-card h-100 rounded-4 p-4" style="background: linear-gradient(135deg, #ffffff, #FCF8FF); border: 1px solid #E8DAEF; transition: all 0.3s ease;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; background: linear-gradient(135deg, #BB8FCE, #9B59B6);">
+                                        <i class="fas fa-university text-white fs-5"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-0" style="color: #6C3483;">Отделение банка</h5>
+                                </div>
+                                <p class="text-muted mb-0">
+                                    Штраф можно оплатить в отделения любого российского банка. Для этого предоставьте квитанцию
+                                    или реквизиты платежа сотруднику банка. Оплатить можно наличными средствами или картой.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="payment-card h-100 rounded-4 p-4" style="background: linear-gradient(135deg, #ffffff, #FCF8FF); border: 1px solid #E8DAEF; transition: all 0.3s ease;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; background: linear-gradient(135deg, #D2B4DE, #BB8FCE);">
+                                        <i class="fas fa-envelope text-white fs-5"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-0" style="color: #6C3483;">Почта России</h5>
+                                </div>
+                                <p class="text-muted mb-0">
+                                    Также есть возможность оплатить штраф через почтовое отделение. Для этого нужно предъявить
+                                    паспорт и документ о правонарушении.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="payment-card h-100 rounded-4 p-4" style="background: linear-gradient(135deg, #ffffff, #FCF8FF); border: 1px solid #E8DAEF; transition: all 0.3s ease;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; background: linear-gradient(135deg, #E8DAEF, #D2B4DE);">
+                                        <i class="fas fa-mobile-alt text-white fs-5"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-0" style="color: #6C3483;">Мобильные приложения</h5>
+                                </div>
+                                <p class="text-muted mb-0">
+                                    Многие банковские приложения предлагают удобную систему поиска и оплаты штрафов ГАИ.
+                                    Достаточно ввести номер постановления или данные автомобиля.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <small class="text-muted">
+                    <i class="fas fa-shield-alt me-1" style="color: #9B59B6;"></i>
+                    Все способы оплаты являются официальными и безопасными
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #F9F5FC;
+    }
+
+    .payment-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .payment-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 35px -12px rgba(155, 89, 182, 0.25);
+        border-color: #9B59B6 !important;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card, .payment-card {
+        animation: fadeInUp 0.4s ease-out;
+    }
+
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        .payment-card {
+            padding: 1rem !important;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #F4ECF7;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #9B59B6, #8E44AD);
+        border-radius: 10px;
+    }
+
+    ::selection {
+        background: #D2B4DE;
+        color: #6C3483;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}

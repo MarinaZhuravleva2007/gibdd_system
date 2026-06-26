@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Панель инспектора{% endblock %}
+
+{% block content %}
+<style>
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1e293b;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 5px;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .card-header-custom {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .table-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+    }
+
+    .btn-create {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: inline-block;
+    }
+
+    .btn-create:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+
+    .recent-violations {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .violation-item {
+        padding: 15px;
+        border-bottom: 1px solid #e2e8f0;
+        transition: background 0.2s;
+        cursor: pointer;
+    }
+
+    .violation-item:hover {
+        background: #f8fafc;
+    }
+
+    .badge-status {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .status-registered {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .status-paid {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    /* Стили для карточки топ районов */
+    .district-item {
+        margin-bottom: 1rem;
+    }
+
+    .district-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .district-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .district-name {
+        font-weight: 500;
+        color: #1e293b;
+    }
+
+    .district-count {
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .progress-bar-custom {
+        height: 6px;
+        background: #e9ecef;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-fill-custom {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 10px;
+        transition: width 0.3s;
+    }
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Панель инспектора</h2>
+        </div>
+        <a href="{% url 'create_violation' %}" class="btn-create">
+            <i class="fas fa-plus-circle"></i> Новое нарушение
+        </a>
+    </div>
+
+    <!-- Статистика -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">{{ today_violations|default:"0" }}</div>
+            <div class="stat-label">Нарушений сегодня</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ week_violations|default:"0" }}</div>
+            <div class="stat-label">Нарушений за неделю</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ total_fines|default:"0"|floatformat:0 }} ₽</div>
+            <div class="stat-label">Сумма штрафов</div>
+        </div>
+    </div>
+
+    <!-- Последние нарушения -->
+    <div class="table-card">
+        <div class="card-header-custom">
+            <h5 class="mb-0"><i class="fas fa-list"></i> Последние зафиксированные нарушения</h5>
+        </div>
+        <div class="recent-violations">
+            {% if recent_violations %}
+                {% for v in recent_violations %}
+                <div class="violation-item" onclick="window.location='{% url 'fine_detail' v.pk %}'">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="fw-bold">{{ v.car_plate }}</div>
+                            <div class="small text-muted">{{ v.created_at|date:"d.m.Y H:i" }}</div>
+                        </div>
+                        <div>
+                            <span class="badge-status {% if v.status == 'registered' %}status-registered{% else %}status-paid{% endif %}">
+                                {% if v.status == 'registered' %}Зафиксировано{% else %}Оплачено{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="badge bg-secondary">{{ v.article }}</span>
+                        <span class="ms-2 fw-bold">{{ v.amount|floatformat:0 }} ₽</span>
+                    </div>
+                    <div class="small text-muted mt-1">{{ v.place|truncatechars:60 }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-5">
+                    <div style="font-size: 3rem;">📭</div>
+                    <p class="text-muted">У вас пока нет зарегистрированных нарушений</p>
+                    <a href="{% url 'create_violation' %}" class="btn btn-primary">Создать первое нарушение</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

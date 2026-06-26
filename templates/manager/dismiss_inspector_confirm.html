@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Увольнение сотрудника{% endblock %}
+
+{% block content %}
+<style>
+    .dismiss-card {
+        max-width: 600px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .dismiss-header {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        padding: 30px;
+        text-align: center;
+        color: white;
+    }
+
+    .dismiss-header h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .dismiss-header p {
+        opacity: 0.8;
+        margin: 0;
+    }
+
+    .dismiss-body {
+        padding: 30px;
+    }
+
+    .inspector-info {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .info-value {
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .stat-item {
+        background: #f1f5f9;
+        border-radius: 16px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #1e293b;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        color: #64748b;
+        margin-top: 5px;
+    }
+
+    .warning-box {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 15px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    .warning-box p {
+        margin: 0;
+        color: #92400e;
+        font-size: 0.9rem;
+    }
+
+    .warning-box ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 20px;
+    }
+
+    .warning-box li {
+        margin: 5px 0;
+        color: #92400e;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        color: #475569;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-cancel:hover {
+        background: #cbd5e1;
+        color: #1e293b;
+    }
+
+    .btn-dismiss {
+        background: #1e293b;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-dismiss:hover {
+        background: #0f172a;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .procedure-note {
+        background: #f1f5f9;
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #475569;
+    }
+</style>
+
+<div class="container">
+    <div class="dismiss-card">
+        <div class="dismiss-header">
+            <div style="font-size: 3rem;">🔒</div>
+            <h2>Увольнение сотрудника</h2>
+            <p>Лишение полномочий в системе</p>
+        </div>
+
+        <div class="dismiss-body">
+            <div class="inspector-info">
+                <div class="info-row">
+                    <span class="info-label">ФИО сотрудника</span>
+                    <span class="info-value">{{ inspector.full_name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Должность</span>
+                    <span class="info-value">Инспектор ДПС</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Номер удостоверения</span>
+                    <span class="info-value">{{ inspector.service_id|default:"не указан" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Дата устройства</span>
+                    <span class="info-value">{{ inspector.date_joined|date:"d.m.Y" }}</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">{{ inspector.registered_violations.count }}</div>
+                    <div class="stat-label">Всего нарушений</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ inspector.registered_violations.filter.status.registered.count }}</div>
+                    <div class="stat-label">Неоплаченных</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ inspector.registered_violations.aggregate.total|default:"0"|floatformat:0 }} ₽</div>
+                    <div class="stat-label">Сумма штрафов</div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Увольнение означает лишение инспектора полномочий в системе:</strong></p>
+                <ul>
+                    <li>Инспектор потеряет доступ к созданию новых нарушений</li>
+                    <li>Все ранее созданные протоколы сохранятся в архиве</li>
+                    <li>Учетная запись будет ограничена</li>
+                    <li>На главной странице инспектор увидит уведомление об ограничении полномочий</li>
+                </ul>
+            </div>
+
+            <div class="procedure-note">
+                📋 <strong>Решение об увольнении</strong> принимается на основании личного заявления инспектора<br>
+                и его личного присутствия.
+            </div>
+
+            <form method="post" style="margin-top: 25px;">
+                {% csrf_token %}
+                <div class="btn-group">
+                    <a href="{% url 'manager_inspector_list' %}" class="btn-cancel">Отмена</a>
+                    <button type="submit" class="btn-dismiss">✅ Подтвердить увольнение</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

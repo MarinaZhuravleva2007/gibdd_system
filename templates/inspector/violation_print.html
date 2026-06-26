@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Протокол о нарушении №{{ violation.id }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden" id="protocol">
+                <!-- ШАПКА -->
+                <div class="card-header border-0 p-4" style="background: linear-gradient(135deg, #0a1628, #1a2a4a);">
+                    <div class="text-center">
+                        <div class="mb-2">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpath d='M2 17l10 5 10-5'/%3E%3Cpath d='M2 12l10 5 10-5'/%3E%3C/svg%3E" alt="Герб" style="opacity: 0.8;">
+                        </div>
+                        <h4 class="text-white mb-0 fw-bold" style="letter-spacing: 1px;">МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ</h4>
+                        <h5 class="text-white-50 mb-0 fw-normal" style="letter-spacing: 0.5px;">РОССИЙСКОЙ ФЕДЕРАЦИИ</h5>
+                        <div class="mt-2">
+                            <span style="color: #c9a84c; font-size: 0.8rem; letter-spacing: 3px;">— • —</span>
+                        </div>
+                        <h5 class="text-white-50 mt-2 mb-0" style="font-weight: 300; letter-spacing: 2px;">ГЛАВНОЕ УПРАВЛЕНИЕ ПО ОБЕСПЕЧЕНИЮ</h5>
+                        <h5 class="text-white-50 mb-0" style="font-weight: 300; letter-spacing: 2px;">БЕЗОПАСНОСТИ ДОРОЖНОГО ДВИЖЕНИЯ</h5>
+                    </div>
+                </div>
+
+                <!-- ТЕЛО -->
+                <div class="card-body p-4 p-lg-5">
+                    <!-- Номер и название документа -->
+                    <div class="text-center mb-4">
+                        <div style="height: 2px; background: linear-gradient(90deg, transparent, #c9a84c, transparent);" class="mb-3"></div>
+                        <h3 class="fw-bold mb-1" style="color: #0a1628; letter-spacing: 2px;">ПРОТОКОЛ О НАРУШЕНИИ</h3>
+                        <p style="color: #6c7a8a; font-size: 0.85rem; letter-spacing: 1px;">ПРАВИЛ ДОРОЖНОГО ДВИЖЕНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ</p>
+                        <div style="height: 2px; background: linear-gradient(90deg, transparent, #c9a84c, transparent);" class="mt-2"></div>
+                    </div>
+
+                    <!-- Номер постановления -->
+                    <div class="text-center mb-4">
+                        <span class="px-4 py-2" style="border: 1px solid #c9a84c; background: #faf8f3; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; color: #0a1628; letter-spacing: 2px;">
+                            ПОСТАНОВЛЕНИЕ № {{ violation.fine_number|default:violation.id }}
+                        </span>
+                    </div>
+
+                    <!-- ===== ДАТА И ВРЕМЯ НАРУШЕНИЯ (НОВЫЙ БЛОК) ===== -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-12">
+                            <div class="border-bottom pb-2">
+                                <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Дата и время совершения нарушения</small>
+                                <p class="fw-bold mb-0" style="color: #0a1628; font-size: 1.1rem;">
+                                    {% if violation.violation_datetime %}
+                                        {{ violation.violation_datetime|date:"d.m.Y" }} в {{ violation.violation_datetime|date:"H:i" }}
+                                    {% else %}
+                                        {{ violation.created_at|date:"d.m.Y" }} в {{ violation.created_at|date:"H:i" }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Информация о ТС -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="border-bottom pb-2">
+            <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Государственный номер</small>
+            <p class="fw-bold mb-0" style="color: #0a1628; font-family: 'Courier New', monospace; font-size: 1.2rem; letter-spacing: 1px;">{{ violation.car_plate }}</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="border-bottom pb-2">
+            <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Марка / Модель</small>
+            <p class="fw-bold mb-0" style="color: #0a1628; font-size: 1rem;">{{ violation.car_brand_model|default:"Не указано" }}</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="border-bottom pb-2">
+            <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">VIN-номер</small>
+            <p class="fw-bold mb-0" style="color: #0a1628; font-family: 'Courier New', monospace; font-size: 0.9rem; letter-spacing: 0.5px;">
+                {% if violation.vin %}
+                    {{ violation.vin }}
+                {% else %}
+                    <span style="color: #8b1a1a; font-weight: 400;">Не указан</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="border-bottom pb-2">
+            <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Дата составления</small>
+            <p class="fw-bold mb-0" style="color: #0a1628; font-size: 1rem;">{{ violation.created_at|date:"d.m.Y H:i" }}</p>
+        </div>
+    </div>
+</div>
+
+                    <!-- Статья и сумма -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-8">
+                            <div class="border-bottom pb-2">
+                                <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Статья Кодекса об административных правонарушениях</small>
+                                <p class="fw-bold mb-0" style="color: #0a1628; font-size: 1rem;">{{ violation.article }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border-bottom pb-2">
+                                <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Сумма штрафа</small>
+                                <p class="fw-bold mb-0" style="color: #8b1a1a; font-size: 1.3rem;">{{ violation.amount|floatformat:0 }} ₽</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Описание -->
+                    {% if violation.description %}
+                    <div class="mb-4">
+                        <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Описание нарушения</small>
+                        <div style="background: #f8f7f3; padding: 12px 16px; border-radius: 8px; border-left: 3px solid #c9a84c; color: #2c3e50; font-size: 0.95rem; line-height: 1.5;">
+                            {{ violation.description }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Фото -->
+                    {% if violation.evidence_img %}
+                    <div class="mb-4">
+                        <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.65rem; letter-spacing: 0.5px;">Фотофиксация</small>
+                        <div style="background: #f8f7f3; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #c9a84c;">
+                            <img src="{{ violation.evidence_img.url }}" alt="Фото нарушения" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Подписи -->
+                    <div class="row mt-5 pt-3" style="border-top: 2px solid #e8e4dc;">
+                        <div class="col-md-6">
+                            <div class="pt-2">
+                                <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.6rem; letter-spacing: 0.5px;">Инспектор</small>
+                                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px;">
+                                    <span style="font-weight: 500; color: #0a1628;">{{ violation.inspector.full_name|default:violation.inspector.username }}</span>
+                                    <span style="border-bottom: 1px solid #0a1628; min-width: 120px; display: inline-block;"></span>
+                                </div>
+                                <small style="color: #6c7a8a; font-size: 0.7rem;">Подпись</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pt-2">
+                                <small class="text-uppercase" style="color: #6c7a8a; font-size: 0.6rem; letter-spacing: 0.5px;">Водитель</small>
+                                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px;">
+                                    <span style="font-weight: 500; color: #0a1628;">______________________</span>
+                                    <span style="border-bottom: 1px solid #0a1628; min-width: 120px; display: inline-block;"></span>
+                                </div>
+                                <small style="color: #6c7a8a; font-size: 0.7rem;">Подпись</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Дата составления -->
+                    <div class="text-center mt-4 pt-3" style="border-top: 1px solid #e8e4dc;">
+                        <small style="color: #6c7a8a; font-size: 0.7rem;">
+                            Дата составления протокола: {{ violation.created_at|date:"d.m.Y H:i" }}
+                        </small>
+                    </div>
+
+                    <!-- Футер -->
+                    <div class="text-center mt-3">
+                        <div style="height: 1px; background: linear-gradient(90deg, transparent, #c9a84c, transparent);" class="mb-2"></div>
+                        <small style="color: #6c7a8a; font-size: 0.6rem; letter-spacing: 1px;">
+                            ДОКУМЕНТ СФОРМИРОВАН АВТОМАТИЧЕСКИ • ГИБДД МВД РОССИИ
+                        </small>
+                    </div>
+                </div>
+
+                <!-- КНОПКИ -->
+                <div class="card-footer border-0 p-4" style="background: #f8f7f3;" id="print-actions">
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <button onclick="window.print()" class="btn px-4 py-2 rounded-pill" style="background: #0a1628; color: white;">
+                            <i class="bi bi-printer me-2"></i> Распечатать протокол
+                        </button>
+                        <a href="javascript:history.back()" class="btn px-4 py-2 rounded-pill" style="background: #6c7a8a; color: white;">
+                            <i class="bi bi-arrow-left me-2"></i> Вернуться назад
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- СТИЛИ ДЛЯ ПЕЧАТИ -->
+<style media="print">
+    body * {
+        visibility: hidden;
+    }
+    #protocol, #protocol * {
+        visibility: visible;
+    }
+    #protocol {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+    }
+    #protocol .card-header {
+        border-radius: 0 !important;
+        padding: 20px !important;
+    }
+    #protocol .card-body {
+        padding: 30px !important;
+    }
+    #protocol .card-footer {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    #print-actions {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    .btn, button, .card-footer, .no-print {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    .card {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    @page {
+        margin: 15mm;
+        size: A4;
+    }
+</style>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #f0eee8;
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 25px 40px -12px rgba(10, 22, 40, 0.25) !important;
+    }
+
+    ::selection {
+        background: #c9a84c;
+        color: #0a1628;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #e8e4dc;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #0a1628, #1a2a4a);
+        border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1.5rem !important;
+        }
+        h3 {
+            font-size: 1.2rem;
+        }
+        h4 {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+{% endblock %}

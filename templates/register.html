@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0 text-center">Регистрация</h3>
+            </div>
+            <div class="card-body p-4">
+
+                {% if form.errors or form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                    <strong>⚠️ Регистрация невозможна! Исправьте следующие ошибки:</strong>
+                    <ul class="mb-0 mt-2">
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endif %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                            <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <!-- ЛИЧНЫЕ ДАННЫЕ -->
+                    <h5 class="text-secondary mb-3">Личные данные</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>ФИО</b></label>
+                            {{ form.full_name }}
+                            {% if form.full_name.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.full_name.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Дата рождения</b></label>
+                            {{ form.birth_date }}
+                            {% if form.birth_date.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.birth_date.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Логин</b></label>
+                            {{ form.username }}
+                            <div class="form-text">Только латиница (A-Z), цифры и _</div>
+                            {% if form.username.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.username.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Телефон</b></label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.phone.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Место жительства</b></label>
+                            {{ form.address }}
+                            {% if form.address.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.address.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><b>Роль</b></label>
+                            {{ form.role }}
+                            {% if form.role.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.role.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- ДАННЫЕ АВТОМОБИЛЯ -->
+                    <h5 class="text-secondary mb-3">Данные автомобиля</h5>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Марка</label>
+                            {{ form.car_brand }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Модель</label>
+                            {{ form.car_model }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Категории ТС</label>
+                            {{ form.car_categories }}
+                            <div class="form-text">A, B, C, D, M</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">VIN-номер</label>
+                            {{ form.vin_number }}
+                            <div class="form-text">17 символов (латиница и цифры)</div>
+                            {% if form.vin_number.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.vin_number.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Год выпуска</label>
+                            {{ form.car_year }}
+                            {% if form.car_year.errors %}
+                            <div class="text-danger small mt-1">{% for e in form.car_year.errors %}{{ e }}{% endfor %}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- ГОСНОМЕР -->
+                    <div class="mb-3 p-3 border rounded bg-light">
+                        <label class="form-label d-block"><b>Государственный номерной знак</b></label>
+                        <div class="d-flex justify-content-center align-items-end">
+                            <div class="me-3" style="width: 130px;">
+                                <label class="small text-muted">Страна</label>
+                                {{ form.country }}
+                            </div>
+                            <div class="d-flex align-items-stretch border border-dark rounded bg-white shadow-sm" style="height: 65px; min-width: 320px;">
+                                <div class="p-1 flex-grow-1 border-end border-dark d-flex align-items-center justify-content-center">
+                                    <input type="text" name="license_plate" class="plate-input main-part"
+                                           placeholder="А000АА" value="{{ form.license_plate.value|default:'' }}"
+                                           style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 32px;">
+                                </div>
+                                <div class="p-1 text-center d-flex flex-column justify-content-between" style="width: 85px;">
+                                    <input type="text" name="car_region" class="plate-input region-part"
+                                           placeholder="777" maxlength="3" value="{{ form.car_region.value|default:'' }}"
+                                           style="border: none; outline: none; text-align: center; font-size: 24px;">
+                                    <div class="d-flex align-items-center justify-content-center pb-1">
+                                        <span id="country_code" style="font-size: 11px;">RUS</span>
+                                        <img id="country_flag_img" src="{% static 'rus_flag.png' %}" style="width: 18px; height: 12px; margin-left: 5px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if form.license_plate.errors %}
+                        <div class="text-danger small text-center mt-2">{% for e in form.license_plate.errors %}{{ e }}{% endfor %}</div>
+                        {% endif %}
+                        {% if form.car_region.errors %}
+                        <div class="text-danger small text-center">{% for e in form.car_region.errors %}{{ e }}{% endfor %}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- ПОЛЕ ДЛЯ ИНСПЕКТОРА -->
+                    <div id="inspector_block" class="mb-3 alert alert-warning {% if form.role.value not in 'inspector,manager' %}d-none{% endif %}">
+                        <label class="form-label"><b>Номер служебного удостоверения</b></label>
+                        {{ form.service_id }}
+                        {% if form.service_id.errors %}
+                        <div class="text-danger small mt-1">{% for e in form.service_id.errors %}{{ e }}{% endfor %}</div>
+                        {% endif %}
+                    </div>
+
+                    <hr>
+
+                    <!-- БЕЗОПАСНОСТЬ -->
+                    <h5 class="text-secondary mb-3">Безопасность</h5>
+                    <div class="mb-3">
+                        <label class="form-label"><b>Пароль</b></label>
+                        {{ form.password1 }}
+                        <div class="form-text">Минимум 10 символов: буквы, цифры, спецсимволы (!@#$%^&*)</div>
+                        {% if form.password1.errors %}
+                        <div class="text-danger small mt-1">{% for e in form.password1.errors %}{{ e }}{% endfor %}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><b>Повторите пароль</b></label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                        <div class="text-danger small mt-1">{% for e in form.password2.errors %}{{ e }}{% endfor %}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 mt-3">Создать аккаунт</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .plate-input:focus { box-shadow: none !important; }
+    .text-danger { color: #dc3545 !important; }
+</style>
+
+<script>
+    const roleSelect = document.querySelector('select[name="role"]');
+    const inspectorBlock = document.getElementById('inspector_block');
+    if (roleSelect && inspectorBlock) {
+        roleSelect.addEventListener('change', function() {
+            if (this.value === 'inspector' || this.value === 'manager') {
+                inspectorBlock.classList.remove('d-none');
+            } else {
+                inspectorBlock.classList.add('d-none');
+            }
+        });
+    }
+
+    const regionInput = document.querySelector('input[name="car_region"]');
+    if (regionInput) {
+        regionInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3);
+        });
+    }
+
+    const plateInput = document.querySelector('input[name="license_plate"]');
+    if (plateInput) {
+        plateInput.addEventListener('input', function(e) {
+            this.value = this.value.toUpperCase();
+        });
+    }
+</script>
+{% endblock %}

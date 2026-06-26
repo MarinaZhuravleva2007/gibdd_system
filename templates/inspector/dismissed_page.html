@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Доступ ограничен{% endblock %}
+
+{% block content %}
+<style>
+    .dismissed-container {
+        max-width: 600px;
+        margin: 80px auto;
+    }
+
+    .dismissed-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .dismissed-header {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        padding: 40px 30px;
+        color: white;
+    }
+
+    .dismissed-header .icon {
+        font-size: 4rem;
+        margin-bottom: 15px;
+    }
+
+    .dismissed-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .dismissed-header p {
+        opacity: 0.8;
+        margin: 0;
+    }
+
+    .dismissed-body {
+        padding: 30px;
+    }
+
+    .warning-message {
+        background: #fef3c7;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .warning-message p {
+        margin: 0 0 10px 0;
+        color: #92400e;
+    }
+
+    .info-block {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 20px;
+        text-align: left;
+        margin-bottom: 25px;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .info-value {
+        color: #1e293b;
+    }
+
+    .btn-logout {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+        padding: 12px 40px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .btn-logout:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        color: white;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-3 {
+        margin-top: 1rem;
+    }
+</style>
+
+<div class="container dismissed-container">
+    <div class="dismissed-card">
+        <div class="dismissed-header">
+            <div class="icon">🔒</div>
+            <h2>Доступ ограничен</h2>
+            <p>Ваши полномочия в системе приостановлены</p>
+        </div>
+
+        <div class="dismissed-body">
+            <div class="warning-message">
+                <p><strong>⚠️ Руководитель ограничил ваши полномочия</strong></p>
+                <p style="font-size: 0.9rem; margin-top: 10px;">
+                    {{ message }}
+                </p>
+            </div>
+
+            <div class="info-block">
+                <div class="info-row">
+                    <span class="info-label">Дата ограничения</span>
+                    <span class="info-value">{{ dismissed_at|date:"d.m.Y H:i"|default:"неизвестно" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Руководитель</span>
+                    <span class="info-value">
+                        {% if dismissed_by %}
+                            {{ dismissed_by.get_full_name|default:dismissed_by.username }}
+                        {% else %}
+                            руководитель
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Основание</span>
+                    <span class="info-value">Решение руководителя подразделения</span>
+                </div>
+            </div>
+
+            <div class="text-center">
+               <form method="post" action="{% url 'logout' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn-logout">
+        🚪 Выйти из системы
+    </button>
+</form>
+            </div>
+
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Для восстановления доступа обратитесь к руководителю подразделения
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

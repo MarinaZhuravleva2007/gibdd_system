@@ -1,0 +1,441 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden" id="fine-card">
+
+                <div class="position-relative" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);">
+                    <div class="position-absolute top-0 end-0 p-3 no-print">
+                        <span class="badge px-3 py-2 rounded-pill" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+                            <i class="fas fa-balance-scale me-1"></i> Официальный документ
+                        </span>
+                    </div>
+                    <div class="p-4 p-md-5 text-white text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-gavel fs-1 opacity-50"></i>
+                        </div>
+                        <h2 class="fw-bold mb-2">Постановление по делу об административном правонарушении</h2>
+                        <p class="text-white-50 mb-0">№ {{ fine.fine_number|default:fine.id|stringformat:"08d" }}</p>
+                        <div class="mt-3">
+                            <span class="px-3 py-2 rounded-pill" style="background: rgba(255,255,255,0.1); font-size: 0.85rem;">
+                                <i class="far fa-calendar-alt me-2"></i> {{ fine.created_at|date:"d.m.Y H:i" }}
+                            </span>
+                        </div>
+                    </div>
+                    <div style="height: 4px; background: linear-gradient(90deg, #ffd89b, #c7e9fb, #ffd89b);"></div>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="row g-4">
+                        <div class="col-lg-7">
+                            <div class="bg-light rounded-4 p-4 h-100">
+                                <h5 class="fw-bold mb-4" style="color: #2c3e66;">
+                                    <i class="fas fa-info-circle me-2" style="color: #dc3545;"></i> Детали нарушения
+                                </h5>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-book me-2" style="width: 20px;"></i> Статья КоАП
+                                    </span>
+                                    <span class="fw-bold text-dark">{{ fine.article }}</span>
+                                </div>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-calendar-day me-2" style="width: 20px;"></i> Дата нарушения
+                                    </span>
+                                    <span class="fw-bold text-dark">
+                                        {% if fine.violation_datetime %}
+                                            {{ fine.violation_datetime|date:"d.m.Y H:i" }}
+                                        {% else %}
+                                            {{ fine.created_at|date:"d.m.Y H:i" }}
+                                        {% endif %}
+                                    </span>
+                                </div>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-map-marker-alt me-2" style="width: 20px;"></i> Место нарушения
+                                    </span>
+                                    <span class="text-dark">{{ fine.place }}</span>
+                                </div>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-car me-2" style="width: 20px;"></i> Транспортное средство
+                                    </span>
+                                    <span class="text-dark">{{ fine.car_brand_model|default:"Не указано" }}</span>
+                                </div>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-id-card me-2" style="width: 20px;"></i> Государственный номер
+                                    </span>
+                                    <span class="fw-bold" style="background: #1a1a2e; color: #ffd700; padding: 4px 14px; border-radius: 30px; font-family: monospace; font-size: 1.1rem; letter-spacing: 1px;">
+                                        {{ fine.car_plate }}
+                                    </span>
+                                </div>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-barcode me-2" style="width: 20px;"></i> VIN-номер
+                                    </span>
+                                    <span class="fw-bold text-dark" style="font-family: monospace;">
+                                        {% if fine.vin %}
+                                            {{ fine.vin }}
+                                        {% else %}
+                                            <span class="text-muted">Не указан</span>
+                                        {% endif %}
+                                    </span>
+                                </div>
+
+                                <div class="info-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                                    <span class="text-secondary fw-semibold">
+                                        <i class="fas fa-tag me-2" style="width: 20px;"></i> Статус
+                                    </span>
+                                    {% if fine.status == 'paid' %}
+                                        <span class="badge px-3 py-2 rounded-pill" style="background: #11998e; color: white;">
+                                            <i class="fas fa-check-circle me-1"></i> Оплачен
+                                        </span>
+                                    {% else %}
+                                        <span class="badge px-3 py-2 rounded-pill" style="background: #dc3545; color: white;">
+                                            <i class="fas fa-exclamation-triangle me-1"></i> Не оплачен
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="mt-4 p-4 rounded-4 text-white text-center" style="background: #dc3545;">
+                                    <div class="small text-white-50 text-uppercase mb-1">Общая сумма штрафа</div>
+                                    <div class="display-5 fw-bold mb-2">{{ fine.amount|floatformat:0 }} ₽</div>
+                                    {% if fine.days_left_for_discount > 0 and fine.status != 'paid' %}
+                                        <div class="mt-2 p-2 rounded-3" style="background: rgba(255,255,255,0.2);">
+                                            <i class="fas fa-percent me-1"></i> Скидка 50% действует еще {{ fine.days_left_for_discount }} дн.
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="rounded-4 overflow-hidden h-100" style="background: #f8f9fa;">
+                                <div class="p-4">
+                                    <h5 class="fw-bold mb-3" style="color: #2c3e66;">
+                                        <i class="fas fa-camera me-2" style="color: #dc3545;"></i> Фотофиксация нарушения
+                                    </h5>
+
+                                    {% if fine.evidence_img %}
+                                        <div class="text-center">
+                                            {% if fine.evidence_img|lower|slice:":4" == "http" or fine.evidence_img|slice:":1" == "/" %}
+                                                <img src="{{ fine.evidence_img }}" alt="Доказательство" class="img-fluid rounded-3 shadow-sm mb-3" style="max-height: 300px; width: 100%; object-fit: cover; cursor: pointer;" onclick="openModal(this.src)">
+                                            {% else %}
+                                                <img src="{{ fine.evidence_img.url }}" alt="Доказательство" class="img-fluid rounded-3 shadow-sm mb-3" style="max-height: 300px; width: 100%; object-fit: cover; cursor: pointer;" onclick="openModal(this.src)">
+                                            {% endif %}
+                                            <div>
+                                                <span class="badge bg-dark px-3 py-2">
+                                                    <i class="fas fa-check-circle me-1"></i> Фото подтверждено
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="text-center py-5 rounded-3" style="background: #e9ecef;">
+                                            <i class="fas fa-image fs-1 text-muted mb-3 d-block"></i>
+                                            <p class="text-muted mb-0">Фотоматериалы отсутствуют</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="p-4 border-top">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="rounded-circle bg-white shadow-sm d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                                            <i class="fas fa-user-shield fs-4" style="color: #2c3e66;"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold mb-1">Протокол составил</div>
+                                            <div>{{ fine.inspector.full_name|default:fine.inspector.username }}</div>
+                                            {% if fine.inspector.service_id %}
+                                                <small class="text-muted">Удостоверение № {{ fine.inspector.service_id }}</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if fine.inspector_comment %}
+                    <div class="mt-4 p-3 rounded-3" style="background: #fef3c7; border-left: 4px solid #f59e0b;">
+                        <small class="text-uppercase fw-bold" style="color: #92400e;">
+                            <i class="fas fa-comment me-1"></i> Комментарий инспектора
+                        </small>
+                        <p class="mb-0 mt-1" style="color: #78350f; font-size: 0.9rem;">{{ fine.inspector_comment }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-5 pt-3 border-top no-print">
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a href="javascript:history.back()" class="btn px-4 py-2 rounded-pill" style="background: #6c757d; color: white;">
+                                <i class="fas fa-arrow-left me-2"></i> Вернуться
+                            </a>
+
+                            <a href="{% url 'violation_print' fine.id %}" class="btn px-4 py-2 rounded-pill" style="background: #1a1a2e; color: white; border: none;">
+                                <i class="fas fa-print me-2"></i> Распечатать протокол
+                            </a>
+                        </div>
+
+                        {% if fine.status != 'paid' and user.role == 'driver' %}
+                            <button class="btn px-5 py-3 rounded-pill fw-bold" style="background: #11998e; color: white; border: none;" onclick="alert('Оплата временно недоступна. Обратитесь в ГИБДД.')">
+                                <i class="fas fa-credit-card me-2"></i> Оплатить штраф
+                            </button>
+                        {% elif fine.status == 'paid' %}
+                            <div class="px-4 py-2 rounded-pill bg-success bg-opacity-10 text-success fw-semibold">
+                                <i class="fas fa-check-circle me-2"></i> Штраф оплачен
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="imageModal" class="position-fixed top-0 start-0 w-100 h-100 d-none align-items-center justify-content-center" style="background: rgba(0,0,0,0.9); z-index: 9999;" onclick="closeModal()">
+    <div class="position-relative" onclick="event.stopPropagation()">
+        <img id="modalImage" src="" alt="Увеличенное фото" style="max-width: 90vw; max-height: 90vh; border-radius: 20px;">
+        <button onclick="closeModal()" class="position-absolute top-0 end-0 btn btn-light rounded-circle m-3" style="width: 45px; height: 45px;">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #f0f2f5;
+    }
+
+    .shadow-xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .info-item {
+        transition: all 0.2s ease;
+    }
+
+    .info-item:hover {
+        transform: translateX(5px);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+        animation: fadeIn 0.4s ease-out;
+    }
+
+    @media (max-width: 768px) {
+        .card-body { padding: 1.5rem !important; }
+        .display-5 { font-size: 1.8rem; }
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0f0c29, #302b63); border-radius: 10px; }
+    ::selection { background: #302b63; color: white; }
+
+    @media print {
+        @page {
+            margin: 15mm;
+            size: A4;
+        }
+
+        body {
+            background: white !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-family: 'Times New Roman', serif !important;
+        }
+
+        .container {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+        }
+
+        .card {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+        }
+
+        .card-body {
+            padding: 25px !important;
+        }
+
+        .no-print {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        #imageModal {
+            display: none !important;
+        }
+
+        .position-relative {
+            background: #f8f9fa !important;
+            border-bottom: 2px solid #000 !important;
+            padding: 20px !important;
+        }
+
+        .position-relative h2 {
+            color: #000 !important;
+            font-size: 1.3rem !important;
+        }
+
+        .position-relative .text-white-50 {
+            color: #6c757d !important;
+        }
+
+        .position-relative .badge {
+            display: none !important;
+        }
+
+        .position-relative > div:last-child {
+            display: none !important;
+        }
+
+        .bg-light {
+            background: #f8f9fa !important;
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .bg-light h5 {
+            color: #000 !important;
+        }
+
+        .info-item {
+            border-bottom-color: #dee2e6 !important;
+        }
+
+        .info-item .text-secondary {
+            color: #000 !important;
+        }
+
+        .info-item .text-dark {
+            color: #000 !important;
+        }
+
+        .fw-bold[style*="background: #1a1a2e"] {
+            background: #1a1a2e !important;
+            color: #000 !important;
+            border: 1px solid #000 !important;
+        }
+
+        .badge[style*="background: #11998e"],
+        .badge[style*="background: #dc3545"] {
+            background: #f8f9fa !important;
+            color: #000 !important;
+            border: 1px solid #000 !important;
+        }
+
+        .mt-4.p-4.rounded-4 {
+            background: #f8f9fa !important;
+            color: #000 !important;
+            border: 1px solid #000 !important;
+        }
+
+        .mt-4.p-4.rounded-4 .text-white-50 {
+            color: #6c757d !important;
+        }
+
+        .mt-4.p-4.rounded-4 .display-5 {
+            color: #000 !important;
+            font-size: 1.8rem !important;
+        }
+
+        .mt-4.p-4.rounded-4 .mt-2.p-2 {
+            background: #f8f9fa !important;
+            border: 1px solid #dee2e6 !important;
+            color: #000 !important;
+        }
+
+        .text-center img {
+            max-height: 150px !important;
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .text-center .badge {
+            background: transparent !important;
+            border: 1px solid #000 !important;
+            color: #000 !important;
+        }
+
+        .rounded-circle.bg-white {
+            border: 1px solid #dee2e6 !important;
+            background: transparent !important;
+        }
+
+        .rounded-circle.bg-white i {
+            color: #000 !important;
+        }
+
+        .border-top {
+            border-top-color: #dee2e6 !important;
+        }
+
+        .fas, .far {
+            color: #000 !important;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+        .text-secondary {
+            color: #000 !important;
+        }
+
+        .d-flex.flex-wrap.justify-content-between {
+            display: none !important;
+        }
+
+        .btn, button, .no-print {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    }
+</style>
+
+<script>
+    function openModal(src) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImage');
+        img.src = src;
+        modal.classList.remove('d-none');
+        modal.classList.add('d-flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('d-flex');
+        modal.classList.add('d-none');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+{% endblock %}

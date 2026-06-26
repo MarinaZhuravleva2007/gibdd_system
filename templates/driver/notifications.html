@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+{% block title %}Уведомления{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9 col-xxl-8">
+            <div class="text-center mb-5">
+                <div class="mb-3">
+
+                </div>
+                <h2 class="display-5 fw-bold mb-2" style="background: linear-gradient(135deg, #9B59B6, #BB8FCE, #D2B4DE); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                    🔔 Ваши уведомления
+                </h2>
+                <p class="text-secondary mx-auto" style="max-width: 600px; font-size: 1.1rem;">
+                    Важная информация о штрафах и статусе их оплаты
+                </p>
+            </div>
+
+            {% if notifications %}
+                <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-light">
+                    <div>
+                        <span class="text-muted">
+                            <i class="bi bi-envelope-paper me-1"></i> Всего:
+                            <strong class="text-purple">{{ notifications|length }}</strong>
+                        </span>
+                    </div>
+                    <button class="btn btn-sm rounded-pill px-3 mark-all-read-btn" style="background: linear-gradient(135deg, #9B59B6, #8E44AD); border: none; color: white;">
+                        <i class="bi bi-envelope-check-fill me-1"></i> Отметить все
+                    </button>
+                </div>
+
+                {% for n in notifications %}
+                <div class="notification-card mb-4 {% if not n.is_read %}unread{% else %}read{% endif %}" data-notification-id="{{ n.id }}">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden" style="{% if not n.is_read %}background: linear-gradient(135deg, #F4ECF7, #FFFFFF); border-left: 5px solid #9B59B6;{% else %}background: #FFFFFF; opacity: 0.85;{% endif %}">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="d-flex gap-3 gap-md-4">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                                         style="width: 60px; height: 60px; background: {% if not n.is_read %}linear-gradient(135deg, #9B59B6, #8E44AD){% else %}linear-gradient(135deg, #D2B4DE, #BB8FCE){% endif %};">
+                                        <i class="bi {% if not n.is_read %}bi-bell-fill{% else %}bi-bell-slash{% endif %} text-white fs-3"></i>
+                                    </div>
+                                </div>
+
+                                <div class="flex-grow-1">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h4 class="fw-bold mb-1 {% if not n.is_read %}" style="color: #6C3483;{% else %}text-secondary{% endif %}">
+                                                {{ n.title }}
+                                                {% if not n.is_read %}
+                                                <span class="badge ms-2 px-2 py-1" style="background: linear-gradient(135deg, #E74C3C, #C0392B); font-size: 0.7rem;">
+                                                    <i class="bi bi-star-fill me-1"></i> Новое
+                                                </span>
+                                                {% endif %}
+                                            </h4>
+                                        </div>
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock me-1"></i>
+                                            {{ n.created_at|date:"d.m.Y H:i" }}
+                                        </small>
+                                    </div>
+
+                                    <p class="mb-4" style="color: #4A4A4A; line-height: 1.7; font-size: 1.05rem; max-width: 100%;">
+                                        {{ n.message }}
+                                        {% if n.message|length < 200 %}
+                                        <span class="text-muted fst-italic"> Пожалуйста, примите меры в установленный срок.</span>
+                                        {% endif %}
+                                    </p>
+
+                                    <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                                        {% if n.violation %}
+                                        <a href="{% url 'fine_detail' n.violation.id %}" class="btn rounded-pill px-4 py-2" style="background: linear-gradient(135deg, #9B59B6, #8E44AD); color: white; border: none;">
+                                            <i class="bi bi-file-text-fill me-2"></i> Подробнее о штрафе
+                                            <i class="bi bi-arrow-right ms-2"></i>
+                                        </a>
+                                        {% endif %}
+
+                                        {% if not n.is_read %}
+                                        <button class="btn btn-outline-purple rounded-pill px-4 py-2 mark-read-btn" data-id="{{ n.id }}" style="border: 2px solid #9B59B6; color: #9B59B6; background: transparent;">
+                                            <i class="bi bi-check-lg me-1"></i> Прочитано
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if not n.is_read %}
+                        <div class="position-absolute top-0 start-0 h-100" style="width: 6px; background: linear-gradient(180deg, #9B59B6, #D2B4DE, #BB8FCE); border-radius: 4px 0 0 4px;"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-5 my-4">
+                    <div class="mb-4">
+                        <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle"
+                             style="width: 140px; height: 140px; background: linear-gradient(135deg, #F4ECF7, #E8DAEF);">
+                            <i class="bi bi-bell-slash" style="font-size: 4.5rem; color: #9B59B6;"></i>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mb-3" style="color: #6C3483;">Тихо и спокойно</h3>
+                    <p class="text-muted mb-4 mx-auto" style="max-width: 500px; font-size: 1.1rem;">
+                        У вас пока нет уведомлений.<br>
+                        Новые сообщения появятся здесь автоматически.
+                    </p>
+                    <div class="text-muted small">
+                        <i class="bi bi-info-circle-fill" style="color: #9B59B6;"></i> Уведомления приходят при начислении штрафов
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --purple-primary: #9B59B6;
+        --purple-dark: #8E44AD;
+        --purple-deep: #6C3483;
+        --purple-light: #D2B4DE;
+        --purple-lighter: #E8DAEF;
+        --purple-bg: #F4ECF7;
+    }
+
+    .notification-card .card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .notification-card:hover .card {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 35px -12px rgba(155, 89, 182, 0.25) !important;
+    }
+
+    .notification-card.unread .card {
+        animation: gentlePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes gentlePulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(155, 89, 182, 0.2);
+        }
+        50% {
+            box-shadow: 0 0 0 8px rgba(155, 89, 182, 0);
+        }
+    }
+
+    .notification-card {
+        animation: slideUp 0.4s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .btn-outline-purple:hover {
+        background: linear-gradient(135deg, #9B59B6, #8E44AD);
+        border-color: transparent;
+        color: white;
+        transform: translateX(4px);
+    }
+
+    .mark-all-read-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+    }
+
+    .btn-loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .btn-loading i {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes gentleFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--purple-lighter);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, var(--purple-primary), var(--purple-dark));
+        border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .rounded-circle {
+            width: 48px !important;
+            height: 48px !important;
+        }
+
+        .rounded-circle i {
+            font-size: 1.5rem !important;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 0.95rem !important;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.9rem;
+        }
+    }
+
+    ::selection {
+        background: var(--purple-light);
+        color: var(--purple-deep);
+    }
+
+    .text-purple {
+        color: var(--purple-primary);
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function markAsRead(notificationId, buttonElement) {
+        const card = buttonElement.closest('.notification-card');
+
+        buttonElement.classList.add('btn-loading');
+        const originalText = buttonElement.innerHTML;
+        buttonElement.innerHTML = '<i class="bi bi-arrow-repeat me-1"></i> ...';
+
+        setTimeout(() => {
+            card.classList.remove('unread');
+            card.classList.add('read');
+
+            const cardDiv = card.querySelector('.card');
+            cardDiv.style.background = '#FFFFFF';
+            cardDiv.style.opacity = '0.85';
+            cardDiv.style.borderLeft = 'none';
+
+            const iconDiv = card.querySelector('.rounded-circle');
+            iconDiv.style.background = 'linear-gradient(135deg, #D2B4DE, #BB8FCE)';
+            const icon = iconDiv.querySelector('i');
+            icon.classList.remove('bi-bell-fill');
+            icon.classList.add('bi-bell-slash');
+
+            const badge = card.querySelector('.badge');
+            if (badge && badge.textContent.includes('Новое')) badge.remove();
+
+            buttonElement.remove();
+
+            const title = card.querySelector('h4');
+            title.classList.add('text-secondary');
+            title.style.color = '';
+
+            showToast('Отмечено как прочитанное', 'success');
+        }, 400);
+    }
+
+    function markAllAsRead() {
+        const unreadButtons = document.querySelectorAll('.mark-read-btn');
+        if (unreadButtons.length === 0) {
+            showToast('Нет непрочитанных уведомлений', 'info');
+            return;
+        }
+
+        const allBtn = document.querySelector('.mark-all-read-btn');
+        allBtn.classList.add('btn-loading');
+        const originalText = allBtn.innerHTML;
+        allBtn.innerHTML = '<i class="bi bi-arrow-repeat me-1"></i> ...';
+
+        setTimeout(() => {
+            unreadButtons.forEach(button => {
+                const card = button.closest('.notification-card');
+                card.classList.remove('unread');
+                card.classList.add('read');
+
+                const cardDiv = card.querySelector('.card');
+                cardDiv.style.background = '#FFFFFF';
+                cardDiv.style.opacity = '0.85';
+                cardDiv.style.borderLeft = 'none';
+
+                const iconDiv = card.querySelector('.rounded-circle');
+                iconDiv.style.background = 'linear-gradient(135deg, #D2B4DE, #BB8FCE)';
+                const icon = iconDiv.querySelector('i');
+                icon.classList.remove('bi-bell-fill');
+                icon.classList.add('bi-bell-slash');
+
+                const badge = card.querySelector('.badge');
+                if (badge && badge.textContent.includes('Новое')) badge.remove();
+
+                button.remove();
+
+                const title = card.querySelector('h4');
+                title.classList.add('text-secondary');
+            });
+
+            allBtn.classList.remove('btn-loading');
+            allBtn.innerHTML = originalText;
+            showToast('Все уведомления отмечены прочитанными', 'success');
+        }, 600);
+    }
+
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed bottom-0 end-0 p-3';
+        toast.style.zIndex = '9999';
+        toast.style.animation = 'slideUp 0.3s ease-out';
+        toast.innerHTML = `
+            <div class="toast align-items-center text-white border-0 show" role="alert" style="background: linear-gradient(135deg, #9B59B6, #8E44AD); border-radius: 12px;" data-bs-autohide="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'info-circle-fill'} me-2"></i>
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+
+        const closeBtn = toast.querySelector('.btn-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            });
+        }
+    }
+
+    document.querySelectorAll('.mark-read-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const notificationId = this.getAttribute('data-id');
+            markAsRead(notificationId, this);
+        });
+    });
+
+    const markAllBtn = document.querySelector('.mark-all-read-btn');
+    if (markAllBtn) {
+        markAllBtn.addEventListener('click', markAllAsRead);
+    }
+});
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+{% endblock %}

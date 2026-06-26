@@ -1,0 +1,2626 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-white p-4 rounded shadow">
+    <!-- Заголовок -->
+    <div class="text-center mb-5 pb-3 border-bottom">
+        <h2 class="display-6 fw-bold text-dark mb-2">
+            <i class="fas fa-traffic-light text-primary me-2"></i>
+            Правила дорожного движения
+        </h2>
+        <p class="text-muted">Российской Федерации</p>
+        <p class="small text-muted mt-2">Официальный текст правил дорожного движения принятый постановлением правительства РФ на 2026 год.<br></p>
+    </div>
+
+    <!-- Содержание -->
+    <div class="table-of-contents mb-5 p-4 bg-light rounded-3 shadow-sm">
+        <h5 class="mb-3 fw-bold">
+            <i class="fas fa-list-ul text-primary me-2"></i>Содержание
+        </h5>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="mb-0">
+                    <li><a href="#chapter1" class="text-decoration-none"><i class="fas fa-book-open me-2 text-primary"></i>Глава 1. Общие положения</a></li>
+                    <li class="mt-2"><a href="#chapter2" class="text-decoration-none"><i class="fas fa-car me-2 text-primary"></i>Глава 2. Общие обязанности водителей</a></li>
+                    <li class="mt-2"><a href="#chapter3" class="text-decoration-none"><i class="fas fa-lightbulb me-2 text-primary"></i>Глава 3. Применение специальных сигналов</a></li>
+                    <li class="mt-2"><a href="#chapter4" class="text-decoration-none"><i class="fas fa-walking me-2 text-primary"></i>Глава 4. Обязанности пешеходов</a></li>
+                    <li class="mt-2"><a href="#chapter5" class="text-decoration-none"><i class="fas fa-users me-2 text-primary"></i>Глава 5. Обязанности пассажиров</a></li>
+                    <li class="mt-2"><a href="#chapter6" class="text-decoration-none"><i class="fas fa-traffic-light me-2 text-primary"></i>Глава 6. Сигналы светофора и регулировщика</a></li>
+                    <li class="mt-2"><a href="#chapter7" class="text-decoration-none"><i class="fas fa-triangle-exclamation me-2 text-primary"></i>Глава 7. Применение аварийной сигнализации и знака аварийной остановки</a></li>
+                    <li class="mt-2"><a href="#chapter8" class="text-decoration-none"><i class="fas fa-exchange-alt me-2 text-primary"></i>Глава 8. Начало движения, маневрирование</a></li>
+                    <li class="mt-2"><a href="#chapter9" class="text-decoration-none"><i class="fas fa-road me-2 text-primary"></i>Глава 9. Расположение транспортных средств на проезжей части</a></li>
+                    <li class="mt-2"><a href="#chapter10" class="text-decoration-none"><i class="fas fa-tachometer-alt me-2 text-primary"></i>Глава 10. Скорость движения</a></li>
+                    <li class="mt-2"><a href="#chapter11" class="text-decoration-none"><i class="fas fa-forward me-2 text-primary"></i>Глава 11. Обгон, опережение, встречный разъезд</a></li>
+                    <li class="mt-2"><a href="#chapter12" class="text-decoration-none"><i class="fas fa-parking me-2 text-primary"></i>Глава 12. Остановка и стоянка</a></li>
+                    <li class="mt-2"><a href="#chapter13" class="text-decoration-none"><i class="fas fa-arrows-alt me-2 text-primary"></i>Глава 13. Проезд перекрёстков</a></li>
+                    <li class="mt-2"><a href="#chapter14" class="text-decoration-none"><i class="fas fa-person-walking-arrow-right me-2 text-primary"></i>Глава 14. Пешеходные переходы и места остановок маршрутных транспортных средств</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="mb-0">
+                    <li><a href="#chapter15" class="text-decoration-none"><i class="fas fa-train me-2 text-primary"></i>Глава 15. Движение через железнодорожные пути</a></li>
+                    <li class="mt-2"><a href="#chapter16" class="text-decoration-none"><i class="fas fa-road me-2 text-primary"></i>Глава 16. Движение по автомагистралям</a></li>
+                    <li class="mt-2"><a href="#chapter17" class="text-decoration-none"><i class="fas fa-home me-2 text-primary"></i>Глава 17. Движение в жилых зонах</a></li>
+                    <li class="mt-2"><a href="#chapter18" class="text-decoration-none"><i class="fas fa-bus me-2 text-primary"></i>Глава 18. Приоритет маршрутных транспортных средств</a></li>
+                    <li class="mt-2"><a href="#chapter20" class="text-decoration-none"><i class="fas fa-tow-truck me-2 text-primary"></i>Глава 20. Буксировка механических транспортных средств</a></li>
+                    <li class="mt-2"><a href="#chapter21" class="text-decoration-none"><i class="fas fa-chalkboard-user me-2 text-primary"></i>Глава 21. Учебная езда</a></li>
+                    <li class="mt-2"><a href="#chapter22" class="text-decoration-none"><i class="fas fa-users me-2 text-primary"></i>Глава 22. Перевозка людей</a></li>
+                    <li class="mt-2"><a href="#chapter23" class="text-decoration-none"><i class="fas fa-boxes me-2 text-primary"></i>Глава 23. Перевозка грузов</a></li>
+                    <li class="mt-2"><a href="#chapter24" class="text-decoration-none"><i class="fas fa-bicycle me-2 text-primary"></i>Глава 24. Дополнительные требования к движению велосипедистов и водителей СИМ</a></li>
+                    <li class="mt-2"><a href="#chapter25" class="text-decoration-none"><i class="fas fa-horse me-2 text-primary"></i>Глава 25. Дополнительные требования к движению гужевых повозок, а также прогону животных</a></li>
+                    <li class="mt-2"><a href="#chapter26" class="text-decoration-none"><i class="fas fa-clock me-2 text-primary"></i>Глава 26. Нормы времени управления ТС и отдыха</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== ГЛАВА 1 ======================== -->
+    <div id="chapter1" class="chapter-block mb-5">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-gavel fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 1. Общие положения</h3>
+        </div>
+
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">1.1</span>
+                <span class="rule-title fw-semibold text-secondary">Общие правила</span>
+            </div>
+            <p class="rule-text ps-2 mt-2">Настоящие Правила дорожного движения устанавливают единый порядок дорожного движения на всей территории Российской Федерации. Другие нормативные акты, касающиеся дорожного движения, должны основываться на требованиях Правил и не противоречить им.</p>
+        </div>
+
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">1.2</span>
+                <span class="rule-title fw-semibold text-secondary">Основные понятия и термины</span>
+            </div>
+            <p class="mb-3 fst-italic text-secondary small">В Правилах используются следующие основные понятия и термины:</p>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-road me-1"></i> "Автомагистраль"</strong>
+                        <p class="mb-0 small mt-1">- дорога, обозначенная знаком 5.1 и имеющая для каждого направления движения проезжие части, отделенные друг от друга разделительной полосой (а при ее отсутствии - дорожным ограждением), без пересечений в одном уровне с другими дорогами.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-truck me-1"></i> "Автопоезд"</strong>
+                        <p class="mb-0 small mt-1">- механическое транспортное средство, сцепленное с прицепом (прицепами).</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-bicycle me-1"></i> "Велосипед"</strong>
+                        <p class="mb-0 small mt-1">- транспортное средство, которое имеет по крайней мере два колеса и приводится в движение мускульной энергией лиц, находящихся на этом транспортном средстве.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-user me-1"></i> "Водитель"</strong>
+                        <p class="mb-0 small mt-1">- лицо, управляющее каким-либо транспортным средством. К водителю приравнивается обучающий вождению.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-exclamation-triangle me-1"></i> "Вынужденная остановка"</strong>
+                        <p class="mb-0 small mt-1">- прекращение движения транспортного средства из-за его технической неисправности или опасности.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-star me-1"></i> "Главная дорога"</strong>
+                        <p class="mb-0 small mt-1">- дорога, обозначенная знаками 2.1, 2.3.1-2.3.7 или 5.1, по отношению к пересекаемой (примыкающей).</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-map me-1"></i> "Дорога"</strong>
+                        <p class="mb-0 small mt-1">- обустроенная полоса земли либо поверхность искусственного сооружения. Дорога включает в себя проезжие части, трамвайные пути, тротуары, обочины.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-train me-1"></i> "Железнодорожный переезд"</strong>
+                        <p class="mb-0 small mt-1">- пересечение дороги с железнодорожными путями на одном уровне.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-bus me-1"></i> "Маршрутное транспортное средство"</strong>
+                        <p class="mb-0 small mt-1">- транспортное средство общего пользования (автобус, троллейбус, трамвай).</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-engine me-1"></i> "Механическое транспортное средство"</strong>
+                        <p class="mb-0 small mt-1">- транспортное средство, приводимое в движение двигателем (тракторы, самоходные машины).</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="term-card p-3 bg-light rounded-3 h-100">
+                        <strong class="text-success"><i class="fas fa-city me-1"></i> "Населенный пункт"</strong>
+                        <p class="mb-0 small mt-1">- застроенная территория, въезды на которую и выезды с которой обозначены знаками 5.23.1-5.26.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">1.3</span>
+            </div>
+            <p class="rule-text">Участники дорожного движения обязаны знать и соблюдать относящиеся к ним требования Правил, сигналов светофоров, знаков и разметки, а также выполнять распоряжения регулировщиков.</p>
+        </div>
+
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">1.4</span>
+            </div>
+            <p class="rule-text">На дорогах установлено <strong>правостороннее движение</strong> транспортных средств.</p>
+        </div>
+
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">1.5</span>
+            </div>
+            <p class="rule-text">Участники дорожного движения должны действовать таким образом, чтобы не создавать опасности для движения и не причинять вреда.</p>
+            <p class="rule-text mt-2">Запрещается повреждать или загрязнять покрытие дорог, снимать, загораживать, повреждать дорожные знаки, светофоры. Лицо, создавшее помеху, обязано принять все возможные меры для ее устранения.</p>
+        </div>
+
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">1.6</span>
+            </div>
+            <p class="rule-text">Лица, нарушившие Правила, несут ответственность в соответствии с действующим законодательством.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 2 ======================== -->
+    <div id="chapter2" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-id-card fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 2. Общие обязанности водителей</h3>
+        </div>
+
+        <!-- 2.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">2.1</span>
+                <span class="rule-title fw-semibold text-secondary">Основная обязанность</span>
+            </div>
+            <p class="rule-text fw-semibold">Водитель механического транспортного средства обязан:</p>
+        </div>
+
+        <!-- 2.1.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.1.1</span>
+            </div>
+            <p class="rule-text">Иметь при себе и по требованию сотрудников полиции передавать им для проверки следующие документы:</p>
+            <div class="ps-4 mt-2">
+                <div class="doc-item mb-2"><i class="fas fa-id-card text-primary me-2"></i> водительское удостоверение на право управления ТС соответствующей категории;</div>
+                <div class="doc-item mb-2"><i class="fas fa-file-alt text-primary me-2"></i> регистрационные документы на ТС (кроме мопедов), а при наличии прицепа - и на прицеп;</div>
+                <div class="doc-item mb-2"><i class="fas fa-truck text-primary me-2"></i> разрешение на перевозку пассажиров и багажа легковым такси, путевой лист, документы на груз;</div>
+                <div class="doc-item mb-2"><i class="fas fa-wheelchair text-primary me-2"></i> документ, подтверждающий инвалидность (при наличии знака "Инвалид").</div>
+            </div>
+            <div class="alert alert-light small mt-3 mb-0">
+                <i class="fas fa-info-circle text-info me-1"></i> Документы, оформленные в электронном виде, предъявляются в виде электронного документа или копии на бумажном носителе.
+            </div>
+        </div>
+
+        <!-- 2.1.1(1) -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.1.1(1)</span>
+            </div>
+            <p class="rule-text">По требованию сотрудников полиции предъявить для проверки страховой полис ОСАГО.</p>
+        </div>
+
+        <!-- 2.1.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.1.2</span>
+            </div>
+            <p class="rule-text">При движении на ТС, оборудованном ремнями безопасности, быть пристегнутым и не перевозить непристегнутых пассажиров. При управлении мотоциклом быть в застегнутом мотошлеме.</p>
+        </div>
+
+        <!-- 2.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">2.2</span>
+            </div>
+            <p class="rule-text fw-semibold">Водитель, участвующий в международном движении, обязан:</p>
+            <ul class="mt-2 ps-4">
+                <li>иметь регистрационные документы и водительское удостоверение, соответствующие Конвенции о дорожном движении;</li>
+                <li>иметь на ТС регистрационные и отличительные знаки государства регистрации;</li>
+                <li>по требованию предъявить документ о страховании в рамках международных систем.</li>
+            </ul>
+        </div>
+
+        <!-- 2.3.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.3.1</span>
+            </div>
+            <p class="rule-text">Перед выездом проверить и в пути обеспечить исправное техническое состояние ТС.</p>
+            <div class="alert alert-danger small mt-2 mb-0">
+                <i class="fas fa-ban me-1"></i> <strong>Запрещается движение</strong> при неисправности тормозной системы, рулевого управления, сцепного устройства, негорящих фарах в темное время суток.
+            </div>
+        </div>
+
+        <!-- 2.3.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.3.2</span>
+            </div>
+            <p class="rule-text">По требованию уполномоченных лиц проходить освидетельствование на состояние опьянения и медицинское освидетельствование.</p>
+        </div>
+
+        <!-- 2.3.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.3.3</span>
+            </div>
+            <p class="rule-text">Предоставлять ТС:</p>
+            <ul class="mt-2 ps-4">
+                <li>сотрудникам полиции, госохраны, ФСБ в предусмотренных случаях;</li>
+                <li>медицинским работникам для перевозки граждан в лечебные учреждения при угрозе жизни.</li>
+            </ul>
+        </div>
+
+        <!-- 2.3.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.9rem;">2.3.4</span>
+            </div>
+            <p class="rule-text">При вынужденной остановке или ДТП вне населенных пунктов в темное время суток быть одетым в куртку, жилет со световозвращающими полосами.</p>
+        </div>
+
+        <!-- 2.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">2.4</span>
+            </div>
+            <p class="rule-text">Право остановки ТС предоставлено регулировщикам, а также уполномоченным лицам Ространснадзора и таможенных органов.</p>
+        </div>
+
+        <!-- 2.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">2.5</span>
+            </div>
+            <p class="rule-text">При ДТП водитель обязан немедленно остановиться, включить аварийную сигнализацию, выставить знак аварийной остановки, не перемещать предметы, относящиеся к происшествию.</p>
+        </div>
+
+        <!-- 2.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">2.6</span>
+            </div>
+            <p class="rule-text fw-semibold">Если в ДТП есть погибшие или раненые, водитель обязан:</p>
+            <ul class="mt-2 ps-4">
+                <li>оказать первую помощь, вызвать скорую и полицию;</li>
+                <li>в экстренных случаях доставить пострадавших в больницу на своем ТС и вернуться на место;</li>
+                <li>освободить проезжую часть, предварительно зафиксировав положение ТС;</li>
+                <li>записать данные очевидцев.</li>
+            </ul>
+        </div>
+
+        <!-- 2.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">2.7</span>
+                <span class="rule-title fw-semibold text-danger">Запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded"><i class="fas fa-wine-bottle text-danger me-2"></i> Управлять в состоянии опьянения</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded"><i class="fas fa-key text-danger me-2"></i> Передавать управление нетрезвым лицам</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded"><i class="fas fa-users text-danger me-2"></i> Пересекать организованные колонны</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded"><i class="fas fa-phone-alt text-danger me-2"></i> Пользоваться телефоном без гарнитуры</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded"><i class="fas fa-clock text-danger me-2"></i> Нарушать режим труда и отдыха</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded"><i class="fas fa-exclamation-triangle text-danger me-2"></i> Опасное вождение</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 3 ======================== -->
+    <div id="chapter3" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-lightbulb fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 3. Применение специальных сигналов</h3>
+        </div>
+
+        <!-- 3.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">3.1</span>
+                <span class="rule-title fw-semibold text-secondary">Приоритет спецтранспорта</span>
+            </div>
+            <p class="rule-text">Водители транспортных средств с включенным проблесковым маячком <strong class="text-primary">синего цвета</strong>, выполняя неотложное служебное задание, могут отступать от требований разделов 6 (кроме сигналов регулировщика) и 8–18 Правил, приложений 1 и 2 при условии обеспечения безопасности движения.</p>
+
+            <div class="alert alert-light mt-3 mb-3 border-start border-primary border-4">
+                <i class="fas fa-car-side text-primary me-2"></i>
+                <strong>На транспортных средствах</strong> ГИБДД, ФСО, ФСБ и Военной автомобильной инспекции дополнительно к синему маячку может быть включен <strong class="text-danger">проблесковый маячок красного цвета</strong>.
+            </div>
+
+            <p class="rule-text">Водители ТС с включенными маячками <strong class="text-primary">синего</strong> и <strong class="text-danger">красного</strong> цветов также могут отступать от указанных требований при условии обеспечения безопасности движения.</p>
+
+            <p class="rule-text mt-2 fw-semibold">Для получения преимущества водители должны включить:</p>
+            <ul class="mt-1 ps-4">
+                <li>проблесковый маячок синего цвета (или синего и красного);</li>
+                <li><strong>специальный звуковой сигнал</strong>.</li>
+            </ul>
+            <p class="rule-text">Воспользоваться приоритетом можно только убедившись, что уступают дорогу.</p>
+
+            <div class="alert alert-secondary small mt-3 mb-0">
+                <i class="fas fa-info-circle me-1"></i> Указанным правом пользуются водители транспортных средств, <strong>сопровождаемых</strong> ТС с синими и красными маячками и звуковым сигналом. На сопровождаемых ТС должен быть включен ближний свет фар.<br>
+                <span class="text-muted">(п. 3.1 в ред. Постановления Правительства РФ от 16.07.2025 N 1071)</span>
+            </div>
+        </div>
+
+        <!-- 3.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">3.2</span>
+                <span class="rule-title fw-semibold text-secondary">Обязанности при приближении спецтранспорта</span>
+            </div>
+            <p class="rule-text">При приближении транспортного средства с <strong class="text-primary">включенным синим маячком и звуковым сигналом</strong> водители обязаны:</p>
+            <ul class="mt-1 ps-4">
+                <li>уступить дорогу;</li>
+                <li>освободить полосу (ряд) проезжей части путем перестроения или выполнить иной маневр для обеспечения беспрепятственного проезда.</li>
+            </ul>
+
+            <p class="rule-text mt-3">При приближении ТС с <strong class="text-primary">синим и красным маячками и звуковым сигналом</strong> — те же требования, а также обеспечение беспрепятственного проезда <strong>сопровождаемого транспортного средства (средств)</strong>.</p>
+
+            <div class="alert alert-danger mt-3 mb-2">
+                <i class="fas fa-ban me-2"></i>
+                <strong>Запрещается:</strong>
+            </div>
+            <ul class="ps-4">
+                <li>выполнять <strong>обгон</strong> ТС со спеццветографикой и включенным синим маячком и звуковым сигналом;</li>
+                <li>выполнять <strong>обгон и опережение</strong> ТС с синим и красным маячками и звуковым сигналом, а также сопровождаемого им ТС;</li>
+                <li>двигаться по соседним полосам (рядам) с их скоростью движения, создавая помехи, препятствуя организованному движению.</li>
+            </ul>
+            <div class="alert alert-light small mt-3 mb-0">
+                <span class="text-muted">(п. 3.2 в ред. Постановления Правительства РФ от 16.07.2025 N 1071)</span>
+            </div>
+        </div>
+
+        <!-- 3.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">3.3</span>
+            </div>
+            <p class="rule-text">Приближаясь к <strong>стоящему транспортному средству</strong> с включенным проблесковым маячком <strong class="text-primary">синего цвета</strong>, водитель должен <strong>снизить скорость</strong>, чтобы иметь возможность немедленно остановиться в случае необходимости.</p>
+        </div>
+
+        <!-- 3.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">3.4</span>
+                <span class="rule-title fw-semibold text-secondary">Проблесковый маячок жёлтого/оранжевого цвета</span>
+            </div>
+            <p class="rule-text">Проблесковый маячок <strong class="text-warning">жёлтого или оранжевого цвета</strong> должен быть включен на транспортных средствах в следующих случаях:</p>
+            <div class="row g-2 mt-2">
+                <div class="col-md-6">
+                    <div class="special-case p-2 bg-light rounded">
+                        <i class="fas fa-road text-warning me-2"></i> Выполнение работ по строительству, ремонту или содержанию дорог
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="special-case p-2 bg-light rounded">
+                        <i class="fas fa-tools text-warning me-2"></i> Погрузка повреждённых, неисправных и перемещаемых ТС
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="special-case p-2 bg-light rounded">
+                        <i class="fas fa-cubes text-warning me-2"></i> Движение крупногабаритных ТС и перевозка опасных грузов
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="special-case p-2 bg-light rounded">
+                        <i class="fas fa-flag-checkered text-warning me-2"></i> Сопровождение тяжеловесных и крупногабаритных ТС
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="special-case p-2 bg-light rounded">
+                        <i class="fas fa-bicycle text-warning me-2"></i> Сопровождение организованных групп велосипедистов
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="special-case p-2 bg-light rounded">
+                        <i class="fas fa-children text-warning me-2"></i> Организованная перевозка группы детей
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-warning mt-3 mb-0">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Внимание!</strong> Включённый проблесковый маячок жёлтого или оранжевого цвета <strong>не даёт преимущества в движении</strong> и служит только для предупреждения других участников движения об опасности.
+            </div>
+        </div>
+
+        <!-- 3.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">3.5</span>
+            </div>
+            <p class="rule-text">Водители ТС с включённым маячком <strong class="text-warning">жёлтого или оранжевого цвета</strong> при выполнении дорожных работ, погрузке повреждённых ТС могут <strong>отступать от требований</strong> дорожных знаков (кроме знаков 2.2, 2.4–2.6, 3.11–3.14, 3.17.2, 3.20) и дорожной разметки, а также пунктов 9.4–9.8 и 16.1 Правил при условии обеспечения безопасности.</p>
+            <p class="rule-text mt-2">Водители крупногабаритных ТС и ТС, осуществляющих сопровождение, могут отступать от требований дорожной разметки при условии обеспечения безопасности.</p>
+        </div>
+
+        <!-- 3.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">3.6</span>
+                <span class="rule-title fw-semibold text-secondary">Проблесковый маячок бело-лунного цвета</span>
+            </div>
+            <p class="rule-text">Водители транспортных средств организаций <strong>федеральной почтовой связи</strong> и ТС, перевозящих <strong>денежную выручку и (или) ценные грузы</strong>, могут включать проблесковый маячок <strong class="text-secondary">бело-лунного цвета</strong> и специальный звуковой сигнал <strong>только при нападениях</strong> на указанные транспортные средства.</p>
+            <div class="alert alert-secondary mt-2 mb-0">
+                <i class="fas fa-info-circle me-1"></i>
+                Проблесковый маячок бело-лунного цвета <strong>не даёт преимущества в движении</strong> и служит для привлечения внимания сотрудников полиции и иных лиц.
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 4 ======================== -->
+    <div id="chapter4" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-walking fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 4. Обязанности пешеходов</h3>
+        </div>
+
+        <!-- 4.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.1</span>
+                <span class="rule-title fw-semibold text-secondary">Движение пешеходов</span>
+            </div>
+            <p class="rule-text">Пешеходы должны двигаться по <strong>тротуарам, пешеходным дорожкам, велопешеходным дорожкам</strong>, а при их отсутствии — по <strong>обочинам</strong>.</p>
+            <p class="rule-text mt-2">Пешеходы, перевозящие или переносящие громоздкие предметы, а также лица, передвигающиеся в инвалидных колясках, могут двигаться по краю проезжей части, если их движение по тротуарам или обочинам создает помехи для других пешеходов.</p>
+            <p class="rule-text mt-2">При отсутствии тротуаров, обочин или невозможности двигаться по ним пешеходы могут двигаться по <strong>велосипедной дорожке</strong> или идти в один ряд по <strong>краю проезжей части</strong>. При движении по велосипедным дорожкам пешеходы должны уступать дорогу велосипедистам и лицам на СИМ.</p>
+            <p class="rule-text mt-2">При движении по краю проезжей части пешеходы должны идти <strong>навстречу движению транспортных средств</strong>. Лица в инвалидных колясках, ведущие мотоцикл, мопед, велосипед, СИМ должны следовать <strong>по ходу движения</strong>.</p>
+            <div class="alert alert-danger mt-3 mb-0">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Вне населённых пунктов</strong> пешеходы <strong>обязаны</strong> иметь при себе предметы со световозвращающими элементами и обеспечивать их видимость водителям.
+            </div>
+        </div>
+
+        <!-- 4.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.2</span>
+                <span class="rule-title fw-semibold text-secondary">Организованные пешие колонны</span>
+            </div>
+            <p class="rule-text">Движение организованных пеших колонн по проезжей части разрешается только <strong>по направлению движения транспортных средств</strong> по правой стороне не более чем по <strong>четыре человека в ряд</strong>. Спереди и сзади колонны с левой стороны должны находиться сопровождающие с красными флажками, а в темноте — с фонарями (спереди белого цвета, сзади красного).</p>
+            <p class="rule-text mt-2"><strong>Группы детей</strong> разрешается водить только по тротуарам и пешеходным дорожкам, а при их отсутствии — по обочинам, <strong>только в светлое время суток</strong> и в сопровождении взрослых.</p>
+        </div>
+
+        <!-- 4.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.3</span>
+                <span class="rule-title fw-semibold text-secondary">Переход дороги</span>
+            </div>
+            <p class="rule-text">Пешеходы должны переходить дорогу по <strong>пешеходным переходам</strong>, подземным или надземным переходам, а при их отсутствии — на <strong>перекрестках</strong> по линии тротуаров или обочин.</p>
+            <p class="rule-text mt-2">На регулируемом перекрестке допускается переход <strong>по диагонали</strong> только при наличии разметки 1.14.3.</p>
+            <p class="rule-text mt-2">При отсутствии в зоне видимости перехода или перекрестка разрешается переходить дорогу <strong>под прямым углом</strong> к краю проезжей части на участках без разделительной полосы и ограждений, где дорога хорошо просматривается в обе стороны.</p>
+        </div>
+
+        <!-- 4.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.4</span>
+            </div>
+            <p class="rule-text">В местах, где движение регулируется, пешеходы должны руководствоваться сигналами <strong>регулировщика</strong> или <strong>пешеходного светофора</strong>, а при его отсутствии — <strong>транспортного светофора</strong>.</p>
+        </div>
+
+        <!-- 4.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.5</span>
+            </div>
+            <p class="rule-text">На пешеходных переходах пешеходы могут выходить на проезжую часть <strong>после того, как оценят расстояние до приближающихся ТС, их скорость и убедятся в безопасности</strong> перехода.</p>
+            <p class="rule-text mt-2">При переходе дороги вне пешеходного перехода пешеходы <strong>не должны создавать помех</strong> для движения ТС и выходить из-за стоящего ТС или иного препятствия, не убедившись в отсутствии приближающихся ТС.</p>
+        </div>
+
+        <!-- 4.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.6</span>
+            </div>
+            <p class="rule-text">Выйдя на проезжую часть, пешеходы <strong>не должны задерживаться или останавливаться</strong>, если это не связано с безопасностью. Пешеходы, не успевшие закончить переход, должны остановиться на <strong>островке безопасности</strong> или на линии, разделяющей транспортные потоки. Продолжать переход можно лишь убедившись в безопасности.</p>
+        </div>
+
+        <!-- 4.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.7</span>
+            </div>
+            <p class="rule-text">При приближении транспортных средств с включенным проблесковым маячком <strong class="text-primary">синего цвета (синего и красного)</strong> и специальным звуковым сигналом пешеходы обязаны <strong>воздержаться от перехода дороги</strong>, а пешеходы, находящиеся на проезжей части, должны <strong>немедленно освободить проезжую часть</strong>.</p>
+        </div>
+
+        <!-- 4.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">4.8</span>
+                <span class="rule-title fw-semibold text-secondary">Ожидание маршрутного транспорта</span>
+            </div>
+            <p class="rule-text">Ожидать маршрутное транспортное средство и такси разрешается только на <strong>приподнятых посадочных площадках</strong>, а при их отсутствии — на <strong>тротуаре или обочине</strong>.</p>
+            <p class="rule-text mt-2">В местах остановок, не оборудованных посадочными площадками, разрешается выходить на проезжую часть для посадки <strong>только после остановки ТС</strong>. После высадки необходимо, не задерживаясь, <strong>освободить проезжую часть</strong>.</p>
+            <p class="rule-text mt-2">При движении через проезжую часть к месту остановки или от него пешеходы должны руководствоваться требованиями пунктов 4.4–4.7.</p>
+        </div>
+    </div>
+        <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 5 ======================== -->
+    <div id="chapter5" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-users fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 5. Обязанности пассажиров</h3>
+        </div>
+
+        <!-- 5.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">5.1</span>
+                <span class="rule-title fw-semibold text-secondary">Обязанности пассажиров</span>
+            </div>
+            <p class="rule-text fw-semibold">Пассажиры обязаны:</p>
+            <ul class="mt-2 ps-4">
+                <li>при поездке на транспортном средстве, оборудованном ремнями безопасности, быть <strong>пристегнутыми</strong> ими, а при поездке на мотоцикле — быть в <strong>застегнутом мотошлеме</strong>;</li>
+                <li>посадку и высадку производить <strong>со стороны тротуара или обочины</strong> и только <strong>после полной остановки</strong> транспортного средства.</li>
+            </ul>
+            <p class="rule-text mt-2">Если посадка и высадка невозможна со стороны тротуара или обочины, она может осуществляться <strong>со стороны проезжей части</strong> при условии, что это будет безопасно и не создаст помех другим участникам движения.</p>
+        </div>
+
+        <!-- 5.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">5.2</span>
+                <span class="rule-title fw-semibold text-secondary">Запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded">
+                        <i class="fas fa-ban text-danger me-2"></i> Отвлекать водителя от управления ТС во время движения
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded">
+                        <i class="fas fa-truck-ramp-box text-danger me-2"></i> В грузовом автомобиле с бортовой платформой — стоять, сидеть на бортах или на грузе выше бортов
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="prohibition-item p-2 bg-light rounded">
+                        <i class="fas fa-car-side text-danger me-2"></i> Открывать двери транспортного средства во время его движения
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 6 ======================== -->
+    <div id="chapter6" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-traffic-light fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 6. Сигналы светофора и регулировщика</h3>
+        </div>
+
+        <!-- 6.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.1</span>
+            </div>
+            <p class="rule-text">В светофорах применяются световые сигналы <strong>зелёного, жёлтого, красного и бело-лунного цвета</strong>. В зависимости от назначения сигналы светофора могут быть круглые, в виде стрелки (стрелок), силуэта пешехода или велосипеда и Х-образные.</p>
+            <p class="rule-text mt-2">Светофоры с круглыми сигналами могут иметь одну или две дополнительные секции с сигналами в виде зелёной стрелки (стрелок), которые располагаются на уровне зелёного круглого сигнала.</p>
+        </div>
+
+        <!-- 6.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.2</span>
+                <span class="rule-title fw-semibold text-secondary">Значения круглых сигналов</span>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-6">
+                    <div class="signal-card p-3 rounded-3 mb-2" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #2e7d32;"></div>
+                            <strong class="text-success">ЗЕЛЁНЫЙ</strong>
+                        </div>
+                        <p class="mb-0 small mt-1">разрешает движение</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="signal-card p-3 rounded-3 mb-2" style="background: #fff3e0; border-left: 4px solid #ed6c02;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #ed6c02;"></div>
+                            <strong class="text-warning">ЖЁЛТЫЙ</strong>
+                        </div>
+                        <p class="mb-0 small mt-1">запрещает движение, предупреждает о смене сигналов</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="signal-card p-3 rounded-3 mb-2" style="background: #ffebee; border-left: 4px solid #d32f2f;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #d32f2f;"></div>
+                            <strong class="text-danger">КРАСНЫЙ</strong>
+                        </div>
+                        <p class="mb-0 small mt-1">запрещает движение (в т.ч. мигающий)</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="signal-card p-3 rounded-3 mb-2" style="background: #e3f2fd; border-left: 4px solid #0288d1;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #2e7d32;"></div>
+                            <strong class="text-info">ЗЕЛЁНЫЙ МИГАЮЩИЙ</strong>
+                        </div>
+                        <p class="mb-0 small mt-1">разрешает движение, информирует об истечении времени</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="signal-card p-3 rounded-3 mb-2" style="background: #fff8e1; border-left: 4px solid #f9a825;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #f9a825;"></div>
+                            <strong class="text-warning">ЖЁЛТЫЙ МИГАЮЩИЙ</strong>
+                        </div>
+                        <p class="mb-0 small mt-1">разрешает движение, информирует о нерегулируемом перекрёстке/пешеходном переходе</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="signal-card p-3 rounded-3 mb-2" style="background: #fbe9e7; border-left: 4px solid #bf360c;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #bf360c;"></div>
+                            <div class="rounded-circle" style="width: 30px; height: 30px; background: #f9a825; margin-left: -8px;"></div>
+                            <strong class="text-danger">КРАСНЫЙ + ЖЁЛТЫЙ</strong>
+                        </div>
+                        <p class="mb-0 small mt-1">запрещает движение, информирует о предстоящем включении зелёного</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.3</span>
+            </div>
+            <p class="rule-text">Сигналы светофора, выполненные в виде <strong>стрелок</strong> красного, жёлтого и зелёного цветов, имеют то же значение, что и круглые сигналы, но их действие распространяется только на направление (направления), указываемое стрелками. При этом стрелка, разрешающая поворот налево, разрешает и <strong>разворот</strong>, если это не запрещено соответствующим дорожным знаком.</p>
+            <p class="rule-text mt-2">Такое же значение имеет <strong>зелёная стрелка в дополнительной секции</strong>. Выключенный сигнал дополнительной секции означает запрещение движения в направлении, регулируемом этой секцией.</p>
+        </div>
+
+        <!-- 6.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.4</span>
+            </div>
+            <p class="rule-text">Если на основной зелёный сигнал нанесена <strong>чёрная контурная стрелка</strong>, она информирует о наличии дополнительной секции и указывает иные разрешённые направления движения.</p>
+            <p class="rule-text mt-2">Информационная световая секция в виде силуэта пешехода и стрелки с мигающим сигналом <strong>бело-лунного цвета</strong> информирует водителя о том, что на пешеходном переходе, в направлении которого он поворачивает, включен сигнал, разрешающий движение пешеходам.</p>
+        </div>
+
+        <!-- 6.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.5</span>
+            </div>
+            <p class="rule-text">Если сигнал светофора выполнен в виде <strong>силуэта пешехода</strong> — его действие распространяется только на пешеходов. Если в виде <strong>велосипеда</strong> — на велосипедистов и водителей мопедов, движущихся по велосипедной полосе.</p>
+            <p class="rule-text mt-2">Для регулирования движения велосипедистов и лиц на СИМ может использоваться светофор с круглыми сигналами уменьшенного размера, дополненный прямоугольной табличкой с изображением велосипеда.</p>
+        </div>
+
+        <!-- 6.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.6</span>
+            </div>
+            <p class="rule-text">Для информирования слепых пешеходов световые сигналы светофора могут быть дополнены <strong>звуковым сигналом</strong>.</p>
+        </div>
+
+        <!-- 6.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.7</span>
+                <span class="rule-title fw-semibold text-secondary">Реверсивные светофоры</span>
+            </div>
+            <p class="rule-text">Для регулирования движения по полосам, направление по которым может изменяться, применяются <strong>реверсивные светофоры</strong> с красным Х-образным сигналом (запрещает движение) и зелёным сигналом в виде стрелы вниз (разрешает движение).</p>
+            <div class="alert alert-light mt-2 mb-0 small">
+                <i class="fas fa-info-circle me-1"></i> При выключенных сигналах реверсивного светофора въезд на полосу, обозначенную с обеих сторон разметкой 1.9, <strong>запрещён</strong>.
+            </div>
+        </div>
+
+        <!-- 6.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.8</span>
+            </div>
+            <p class="rule-text">Для регулирования движения <strong>трамваев</strong> и ТС по полосе для маршрутных ТС применяются светофоры с круглыми сигналами <strong>бело-лунного цвета</strong>, расположенными в виде буквы <strong>"Т"</strong>. Движение разрешается только при включении нижнего сигнала и одного или нескольких верхних.</p>
+        </div>
+
+        <!-- 6.9 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.9</span>
+            </div>
+            <p class="rule-text">Круглый <strong>бело-лунный мигающий</strong> сигнал на железнодорожном переезде <strong>разрешает</strong> движение через переезд. При выключенных сигналах движение разрешается при отсутствии в пределах видимости приближающегося поезда.</p>
+        </div>
+
+        <!-- 6.10 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.10</span>
+                <span class="rule-title fw-semibold text-secondary">Сигналы регулировщика</span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3 h-100">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-arrows-alt-h fs-1 text-primary"></i>
+                        </div>
+                        <strong>Руки вытянуты в стороны или опущены</strong>
+                        <ul class="small mt-2 mb-0 ps-3">
+                            <li>Слева и справа: трамваю — прямо, ТС — прямо и направо</li>
+                            <li class="text-danger">Спереди и сзади — движение запрещено</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3 h-100">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-hand-point-right fs-1 text-primary"></i>
+                        </div>
+                        <strong>Правая рука вытянута вперёд</strong>
+                        <ul class="small mt-2 mb-0 ps-3">
+                            <li>Слева: трамваю — налево, ТС — во всех направлениях</li>
+                            <li>Спереди: только направо</li>
+                            <li class="text-danger">Справа и сзади — движение запрещено</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3 h-100">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-hand-paper fs-1 text-danger"></i>
+                        </div>
+                        <strong>Рука поднята вверх</strong>
+                        <ul class="small mt-2 mb-0 ps-3">
+                            <li class="text-danger">Движение всех ТС и пешеходов запрещено</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="rule-text mt-3 small">Лица на СИМ руководствуются сигналами регулировщика для <strong>пешеходов</strong>.</p>
+        </div>
+
+        <!-- 6.11 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.11</span>
+            </div>
+            <p class="rule-text">Требование об остановке ТС подаётся с помощью громкоговорящего устройства или жестом руки, направленной на ТС. Водитель должен <strong>остановиться в указанном месте</strong>.</p>
+        </div>
+
+        <!-- 6.12 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.12</span>
+            </div>
+            <p class="rule-text">Дополнительный сигнал <strong>свистком</strong> подаётся для привлечения внимания участников движения.</p>
+        </div>
+
+        <!-- 6.13 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.13</span>
+            </div>
+            <p class="rule-text">При запрещающем сигнале светофора или регулировщика водители должны остановиться <strong>перед стоп-линией</strong> (знаком 6.16), а при её отсутствии:</p>
+            <ul class="mt-2 ps-4">
+                <li>на перекрёстке — перед пересекаемой проезжей частью;</li>
+                <li>перед ж/д переездом — в соответствии с пунктом 15.4;</li>
+                <li>в других местах — перед светофором или регулировщиком.</li>
+            </ul>
+        </div>
+
+        <!-- 6.14 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.14</span>
+            </div>
+            <p class="rule-text">Водителям, которые при включении <strong>жёлтого сигнала</strong> или поднятии регулировщиком руки вверх <strong>не могут остановиться без экстренного торможения</strong>, разрешается дальнейшее движение.</p>
+            <p class="rule-text mt-2">Пешеходы и лица на СИМ, которые при подаче сигнала находились на проезжей части, должны <strong>освободить её</strong>, а если невозможно — остановиться на линии, разделяющей транспортные потоки.</p>
+        </div>
+
+        <!-- 6.15 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.15</span>
+            </div>
+            <div class="alert alert-warning mb-0">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Участники дорожного движения должны выполнять требования сигналов и распоряжения <strong>регулировщика</strong>, даже если они противоречат сигналам светофора, требованиям дорожных знаков или разметки.
+            </div>
+            <p class="rule-text mt-2">Если значения сигналов светофора противоречат требованиям дорожных знаков приоритета, водители должны руководствоваться <strong>сигналами светофора</strong>.</p>
+        </div>
+
+        <!-- 6.16 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">6.16</span>
+            </div>
+            <p class="rule-text">На железнодорожных переездах одновременно с красным мигающим сигналом светофора может подаваться <strong>звуковой сигнал</strong>, дополнительно информирующий о запрещении движения через переезд.</p>
+        </div>
+    </div>
+        <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 7 ======================== -->
+    <div id="chapter7" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-triangle-exclamation fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 7. Применение аварийной сигнализации и знака аварийной остановки</h3>
+        </div>
+
+        <!-- 7.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">7.1</span>
+                <span class="rule-title fw-semibold text-secondary">Когда включать аварийную сигнализацию</span>
+            </div>
+            <p class="rule-text fw-semibold">Аварийная сигнализация должна быть включена:</p>
+            <div class="row g-2 mt-2">
+                <div class="col-md-6">
+                    <div class="p-2 bg-light rounded"><i class="fas fa-car-crash text-danger me-2"></i> при дорожно-транспортном происшествии</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-2 bg-light rounded"><i class="fas fa-ban text-danger me-2"></i> при вынужденной остановке в местах, где остановка запрещена</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-2 bg-light rounded"><i class="fas fa-eye text-warning me-2"></i> при ослеплении водителя светом фар</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-2 bg-light rounded"><i class="fas fa-tow-truck me-2"></i> при буксировке (на буксируемом механическом ТС)</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-2 bg-light rounded"><i class="fas fa-children me-2 text-info"></i> при посадке детей в ТС с опознавательным знаком "Перевозка детей" и высадке из него</div>
+                </div>
+            </div>
+            <p class="rule-text mt-3">Водитель должен включать аварийную сигнализацию и в других случаях для предупреждения участников движения об опасности, которую может создать транспортное средство.</p>
+        </div>
+
+        <!-- 7.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">7.2</span>
+                <span class="rule-title fw-semibold text-secondary">Знак аварийной остановки</span>
+            </div>
+            <p class="rule-text">При остановке ТС и включении аварийной сигнализации, а также при её неисправности или отсутствии <strong>знак аварийной остановки</strong> должен быть незамедлительно выставлен:</p>
+            <ul class="mt-2 ps-4">
+                <li>при дорожно-транспортном происшествии;</li>
+                <li>при вынужденной остановке в местах, где она запрещена, и там, где с учётом условий видимости ТС не может быть своевременно замечено другими водителями.</li>
+            </ul>
+            <div class="alert alert-info mt-3 mb-0">
+                <i class="fas fa-ruler-combined me-2"></i>
+                <strong>Расстояние установки знака:</strong> не менее <strong>15 м</strong> в населённых пунктах и <strong>30 м</strong> вне населённых пунктов.
+            </div>
+        </div>
+
+        <!-- 7.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">7.3</span>
+            </div>
+            <p class="rule-text">При отсутствии или неисправности аварийной сигнализации на буксируемом механическом ТС на его задней части должен быть закреплён <strong>знак аварийной остановки</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 8 ======================== -->
+    <div id="chapter8" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-exchange-alt fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 8. Начало движения, маневрирование</h3>
+        </div>
+
+        <!-- 8.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.1</span>
+            </div>
+            <p class="rule-text">Перед началом движения, перестроением, поворотом (разворотом) и остановкой водитель обязан подавать сигналы <strong>световыми указателями поворота</strong>, а если они отсутствуют или неисправны — <strong>рукой</strong>. При выполнении маневра не должны создаваться опасность и помехи другим участникам движения.</p>
+            <div class="row g-3 mt-2">
+                <div class="col-md-4 text-center">
+                    <div class="p-2 bg-light rounded">
+                        <i class="fas fa-hand-point-left fs-1 text-primary"></i>
+                        <p class="small mb-0 mt-1"><strong>Левый поворот</strong><br>левая рука в сторону<br>или правая согнута вверх</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="p-2 bg-light rounded">
+                        <i class="fas fa-hand-point-right fs-1 text-primary"></i>
+                        <p class="small mb-0 mt-1"><strong>Правый поворот</strong><br>правая рука в сторону<br>или левая согнута вверх</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="p-2 bg-light rounded">
+                        <i class="fas fa-hand-paper fs-1 text-primary"></i>
+                        <p class="small mb-0 mt-1"><strong>Торможение</strong><br>левая или правая рука вверх</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.2</span>
+            </div>
+            <p class="rule-text">Сигнал должен подаваться <strong>заблаговременно</strong> и прекращаться немедленно после завершения маневра. Подача сигнала <strong>не даёт преимущества</strong> и не освобождает от принятия мер предосторожности.</p>
+        </div>
+
+        <!-- 8.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.3</span>
+            </div>
+            <p class="rule-text">При выезде на дорогу с прилегающей территории водитель должен <strong>уступить дорогу</strong> ТС, лицам на СИМ и пешеходам, движущимся по ней. При съезде с дороги — пешеходам, велосипедистам и лицам на СИМ, путь движения которых он пересекает.</p>
+        </div>
+
+        <!-- 8.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.4</span>
+            </div>
+            <p class="rule-text">При перестроении уступить дорогу ТС, движущимся попутно без изменения направления. При одновременном перестроении — уступить дорогу ТС, находящемуся <strong>справа</strong>.</p>
+        </div>
+
+        <!-- 8.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.5</span>
+            </div>
+            <p class="rule-text">Перед поворотом направо, налево или разворотом водитель обязан заблаговременно занять соответствующее <strong>крайнее положение</strong> на проезжей части. При наличии трамвайных путей попутного направления поворот налево и разворот выполняются с них, если знаки или разметка не предписывают иное.</p>
+        </div>
+
+        <!-- 8.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.6</span>
+            </div>
+            <p class="rule-text">Поворот должен осуществляться так, чтобы при выезде с пересечения проезжих частей ТС <strong>не оказалось на стороне встречного движения</strong>. При повороте направо ТС должно двигаться по возможности ближе к правому краю проезжей части.</p>
+        </div>
+
+        <!-- 8.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.7</span>
+            </div>
+            <p class="rule-text">Если ТС из-за габаритов не может выполнить поворот по правилам, допускается отступать от них при условии безопасности и отсутствия помех.</p>
+        </div>
+
+        <!-- 8.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.8</span>
+            </div>
+            <p class="rule-text">При повороте налево или развороте вне перекрёстка водитель обязан <strong>уступить дорогу встречным ТС и трамваю попутного направления</strong>.</p>
+        </div>
+
+        <!-- 8.9 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.9</span>
+            </div>
+            <p class="rule-text">При пересечении траекторий, когда очередность не оговорена Правилами, дорогу уступает водитель, к которому ТС приближается <strong>справа</strong>.</p>
+        </div>
+
+        <!-- 8.10 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.10</span>
+            </div>
+            <p class="rule-text">При наличии полосы торможения водитель должен перестроиться на неё и снижать скорость только на ней. При наличии полосы разгона — двигаться по ней и перестраиваться, уступая дорогу.</p>
+        </div>
+
+        <!-- 8.11 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.11</span>
+                <span class="rule-title fw-semibold text-danger">Разворот запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-person-walking-arrow-right text-danger me-2"></i> на пешеходных переходах</div>
+                <div class="col-md-6"><i class="fas fa-tunnel text-danger me-2"></i> в тоннелях</div>
+                <div class="col-md-6"><i class="fas fa-bridge text-danger me-2"></i> на мостах, путепроводах, эстакадах и под ними</div>
+                <div class="col-md-6"><i class="fas fa-train text-danger me-2"></i> на железнодорожных переездах</div>
+                <div class="col-md-6"><i class="fas fa-eye-slash text-danger me-2"></i> при видимости дороги менее 100 м</div>
+                <div class="col-md-6"><i class="fas fa-bus text-danger me-2"></i> в местах остановок маршрутных ТС</div>
+            </div>
+        </div>
+
+        <!-- 8.12 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">8.12</span>
+            </div>
+            <p class="rule-text">Движение <strong>задним ходом</strong> разрешается при условии безопасности и отсутствия помех. Запрещается на перекрёстках и в местах, где запрещён разворот.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 9 ======================== -->
+    <div id="chapter9" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-road fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 9. Расположение транспортных средств на проезжей части</h3>
+        </div>
+
+        <!-- 9.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.1</span>
+            </div>
+            <p class="rule-text">Количество полос определяется разметкой и знаками, а если их нет — самими водителями с учётом ширины проезжей части, габаритов ТС и интервалов. Стороной для встречного движения считается половина ширины проезжей части слева.</p>
+        </div>
+
+        <!-- 9.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.2</span>
+            </div>
+            <p class="rule-text">На дорогах с 4 и более полосами <strong>запрещается выезжать на полосу встречного движения</strong> для обгона или объезда. Повороты налево и развороты выполняются на перекрёстках и в других разрешённых местах.</p>
+        </div>
+
+        <!-- 9.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.3</span>
+            </div>
+            <p class="rule-text">На дорогах с тремя полосами средняя полоса используется для движения в обоих направлениях. Выезжать на неё разрешено только для обгона, объезда, поворота налево или разворота.</p>
+        </div>
+
+        <!-- 9.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.4</span>
+            </div>
+            <p class="rule-text">Вне населённых пунктов и на дорогах со скоростью >80 км/ч — двигаться ближе к правому краю. Запрещается занимать левые полосы при свободных правых.</p>
+            <p class="rule-text mt-2">В населённых пунктах можно использовать удобную полосу. При интенсивном движении менять полосу разрешено только для поворота, разворота, остановки или объезда препятствия.</p>
+        </div>
+
+        <!-- 9.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.5</span>
+            </div>
+            <p class="rule-text">ТС со скоростью не более 40 км/ч должны двигаться по <strong>крайней правой полосе</strong>, кроме случаев объезда, обгона или перестроения перед поворотом налево.</p>
+        </div>
+
+        <!-- 9.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.6</span>
+            </div>
+            <p class="rule-text">Разрешается движение по трамвайным путям попутного направления слева при занятых всех полосах, а также при объезде, повороте налево или развороте. Выезжать на встречные трамвайные пути <strong>запрещается</strong>.</p>
+        </div>
+
+        <!-- 9.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.7</span>
+            </div>
+            <p class="rule-text">Движение должно осуществляться <strong>строго по обозначенным полосам</strong>. Наезжать на прерывистые линии разрешено лишь при перестроении.</p>
+        </div>
+
+        <!-- 9.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.8</span>
+            </div>
+            <p class="rule-text">При повороте на дорогу с реверсивным движением ТС должно занять <strong>крайнюю правую полосу</strong>.</p>
+        </div>
+
+        <!-- 9.9 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.9</span>
+            </div>
+            <p class="rule-text"><strong>Запрещается</strong> движение по разделительным полосам, обочинам, тротуарам, пешеходным дорожкам, а также механических ТС по полосам для велосипедистов.</p>
+        </div>
+
+        <!-- 9.10 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.10</span>
+            </div>
+            <p class="rule-text">Водитель должен соблюдать <strong>безопасную дистанцию и боковой интервал</strong>.</p>
+        </div>
+
+        <!-- 9.11 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.11</span>
+            </div>
+            <p class="rule-text">Вне населённых пунктов на двухполосных дорогах водитель тихоходного ТС или ТС длиной >7 м должен поддерживать дистанцию для обгона.</p>
+        </div>
+
+        <!-- 9.12 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">9.12</span>
+            </div>
+            <p class="rule-text">Препятствия на середине проезжей части объезжать <strong>справа</strong>, если знаки и разметка не предписывают иное.</p>
+        </div>
+    </div>
+        <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 10 ======================== -->
+    <div id="chapter10" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-tachometer-alt fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 10. Скорость движения</h3>
+        </div>
+
+        <!-- 10.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">10.1</span>
+            </div>
+            <p class="rule-text">Водитель должен вести ТС со скоростью, не превышающей установленного ограничения, учитывая интенсивность движения, особенности ТС и груза, дорожные и метеорологические условия. Скорость должна обеспечивать возможность постоянного контроля за движением.</p>
+            <div class="alert alert-danger mt-3 mb-0">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                При возникновении <strong>опасности</strong>, которую водитель в состоянии обнаружить, он должен принять возможные меры к снижению скорости вплоть до остановки.
+            </div>
+        </div>
+
+        <!-- 10.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">10.2</span>
+                <span class="rule-title fw-semibold text-secondary">Ограничения в населённых пунктах</span>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded text-center">
+                        <i class="fas fa-city fs-2 text-primary"></i>
+                        <p class="mb-0 mt-2"><strong>Населённые пункты</strong><br>не более <span class="fs-3 fw-bold text-danger">60</span> км/ч</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded text-center">
+                        <i class="fas fa-home fs-2 text-primary"></i>
+                        <p class="mb-0 mt-2"><strong>Жилые зоны, велосипедные зоны, дворовые территории</strong><br>не более <span class="fs-3 fw-bold text-danger">20</span> км/ч</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">10.3</span>
+                <span class="rule-title fw-semibold text-secondary">Ограничения вне населённых пунктов</span>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr><th>Транспортное средство</th><th>Автомагистраль</th><th>Остальные дороги</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Мотоциклы, легковые автомобили, грузовые до 3,5 т</td><td class="text-danger fw-bold">110 км/ч</td><td class="text-danger fw-bold">90 км/ч</td></tr>
+                        <tr><td>Автобусы с ремнями безопасности (только сидячие места)</td><td colspan="2" class="text-danger fw-bold">90 км/ч</td></tr>
+                        <tr><td>Другие автобусы</td><td colspan="2" class="text-danger fw-bold">70 км/ч</td></tr>
+                        <tr><td>Легковые с прицепом, грузовые >3,5 т</td><td class="text-danger fw-bold">90 км/ч</td><td class="text-danger fw-bold">70 км/ч</td></tr>
+                        <tr><td>Грузовые с людьми в кузове</td><td colspan="2" class="text-danger fw-bold">60 км/ч</td></tr>
+                        <tr><td>Автобусы с детьми</td><td colspan="2" class="text-danger fw-bold">60 км/ч</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="alert alert-info mt-2 small mb-0">
+                <i class="fas fa-info-circle me-1"></i> По решению владельцев дорог может разрешаться скорость до <strong>130 км/ч</strong> на автомагистралях (знак 5.1) и до <strong>110 км/ч</strong> на дорогах для автомобилей (знак 5.3).
+            </div>
+        </div>
+
+        <!-- 10.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">10.4</span>
+            </div>
+            <p class="rule-text">ТС, буксирующим механические ТС, разрешается движение со скоростью не более <strong>50 км/ч</strong>. Тяжеловесным, крупногабаритным и опасным грузам — скорость указывается в специальном разрешении.</p>
+        </div>
+
+        <!-- 10.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">10.5</span>
+                <span class="rule-title fw-semibold text-danger">Водителю запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-tachometer-alt text-danger me-2"></i> превышать максимальную скорость по теххарактеристике ТС</div>
+                <div class="col-md-6"><i class="fas fa-sign text-danger me-2"></i> превышать скорость на знаке "Ограничение скорости"</div>
+                <div class="col-md-6"><i class="fas fa-turtle text-danger me-2"></i> двигаться слишком медленно, создавая помехи</div>
+                <div class="col-md-6"><i class="fas fa-car-crash text-danger me-2"></i> резко тормозить без необходимости</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 11 ======================== -->
+    <div id="chapter11" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-forward fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 11. Обгон, опережение, встречный разъезд</h3>
+        </div>
+
+        <!-- 11.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.1</span>
+            </div>
+            <p class="rule-text">Прежде чем начать обгон, водитель обязан убедиться, что полоса для выезда свободна на достаточном расстоянии и он не создаст опасности и помех.</p>
+        </div>
+
+        <!-- 11.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.2</span>
+                <span class="rule-title fw-semibold text-danger">Обгон запрещается, если</span>
+            </div>
+            <ul class="mt-2 ps-4">
+                <li>впереди идущее ТС <strong>уже обгоняет или объезжает</strong> препятствие;</li>
+                <li>впереди идущее ТС <strong>подало сигнал поворота налево</strong>;</li>
+                <li>следующее сзади ТС <strong>уже начало обгон</strong>;</li>
+                <li>после обгона нельзя вернуться на свою полосу <strong>безопасно</strong>.</li>
+            </ul>
+        </div>
+
+        <!-- 11.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.3</span>
+            </div>
+            <p class="rule-text">Водителю обгоняемого ТС <strong>запрещается препятствовать обгону</strong> повышением скорости или иными действиями.</p>
+        </div>
+
+        <!-- 11.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.4</span>
+                <span class="rule-title fw-semibold text-danger">Обгон запрещён</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-traffic-light text-danger me-2"></i> на регулируемых перекрёстках</div>
+                <div class="col-md-6"><i class="fas fa-road text-danger me-2"></i> на нерегулируемых — при движении не по главной</div>
+                <div class="col-md-6"><i class="fas fa-person-walking-arrow-right text-danger me-2"></i> на пешеходных переходах</div>
+                <div class="col-md-6"><i class="fas fa-train text-danger me-2"></i> на ж/д переездах и ближе 100 м перед ними</div>
+                <div class="col-md-6"><i class="fas fa-bridge text-danger me-2"></i> на мостах, путепроводах, эстакадах, под ними, в тоннелях</div>
+                <div class="col-md-6"><i class="fas fa-mountain text-danger me-2"></i> в конце подъёма, на опасных поворотах, при ограниченной видимости</div>
+            </div>
+        </div>
+
+        <!-- 11.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.5</span>
+            </div>
+            <p class="rule-text">Опережение на пешеходных переходах — с учётом требований пункта 14.2.</p>
+        </div>
+
+        <!-- 11.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.6</span>
+            </div>
+            <p class="rule-text">Вне населённых пунктов водитель тихоходного или крупногабаритного ТС, а также ТС со скоростью ≤30 км/ч, должен <strong>принять правее или остановиться</strong>, чтобы пропустить следующие за ним ТС.</p>
+        </div>
+
+        <!-- 11.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">11.7</span>
+            </div>
+            <p class="rule-text">При затруднённом встречном разъезде уступает тот, на чьей стороне препятствие. На уклонах (знаки 1.13, 1.14) — движущийся <strong>на спуск</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 12 ======================== -->
+    <div id="chapter12" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-parking fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 12. Остановка и стоянка</h3>
+        </div>
+
+        <!-- 12.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.1</span>
+            </div>
+            <p class="rule-text">Остановка и стоянка разрешаются на <strong>правой стороне</strong> на обочине, а при её отсутствии — у края проезжей части. На левой стороне — в населённых пунктах на дорогах с одной полосой в каждом направлении (без трамвайных путей посередине) и на дорогах с односторонним движением.</p>
+        </div>
+
+        <!-- 12.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.2</span>
+            </div>
+            <p class="rule-text">Ставить ТС разрешается <strong>в один ряд параллельно краю проезжей части</strong>. Двухколесные ТС без прицепа — в два ряда. Стоянка на краю тротуара разрешена только легковым авто, мотоциклам и мопедам в местах со знаком 6.4 и табличками.</p>
+        </div>
+
+        <!-- 12.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.3</span>
+            </div>
+            <p class="rule-text">Стоянка для длительного отдыха вне населённых пунктов — только на специальных площадках или за пределами дороги.</p>
+        </div>
+
+        <!-- 12.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.4</span>
+                <span class="rule-title fw-semibold text-danger">Остановка запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-train text-danger me-2"></i> на трамвайных путях и близко к ним</div>
+                <div class="col-md-6"><i class="fas fa-tunnel text-danger me-2"></i> на ж/д переездах, в тоннелях, на эстакадах, мостах (если менее 3 полос) и под ними</div>
+                <div class="col-md-6"><i class="fas fa-ruler-combined text-danger me-2"></i> где расстояние до сплошной линии/края проезжей части &lt;3 м</div>
+                <div class="col-md-6"><i class="fas fa-person-walking-arrow-right text-danger me-2"></i> на пешеходных переходах и ближе 5 м перед ними</div>
+                <div class="col-md-6"><i class="fas fa-eye-slash text-danger me-2"></i> на опасных поворотах с видимостью &lt;100 м</div>
+                <div class="col-md-6"><i class="fas fa-intersection text-danger me-2"></i> на пересечении проезжих частей и ближе 5 м от края</div>
+                <div class="col-md-6"><i class="fas fa-bus text-danger me-2"></i> ближе 15 м от остановок маршрутных ТС</div>
+                <div class="col-md-6"><i class="fas fa-bicycle text-danger me-2"></i> на велосипедных дорожках и полосе для велосипедистов</div>
+                <div class="col-md-6"><i class="fas fa-shield-alt text-danger me-2"></i> на островках направляющих и островках безопасности</div>
+            </div>
+        </div>
+
+        <!-- 12.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.5</span>
+                <span class="rule-title fw-semibold text-danger">Стоянка запрещается</span>
+            </div>
+            <ul class="mt-2 ps-4">
+                <li>в местах, где запрещена остановка;</li>
+                <li>вне населённых пунктов на проезжей части дорог, обозначенных знаком <strong>2.1</strong> (главная дорога);</li>
+                <li>ближе <strong>50 м</strong> от железнодорожных переездов.</li>
+            </ul>
+        </div>
+
+        <!-- 12.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.6</span>
+            </div>
+            <p class="rule-text">При вынужденной остановке в запрещённом месте водитель должен принять все меры для отвода ТС.</p>
+        </div>
+
+        <!-- 12.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.7</span>
+            </div>
+            <p class="rule-text">Запрещается открывать двери, если это создаст помехи.</p>
+        </div>
+
+        <!-- 12.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">12.8</span>
+            </div>
+            <p class="rule-text">Водитель может покидать место, если приняты меры против самопроизвольного движения.</p>
+            <div class="alert alert-danger mt-2 mb-0">
+                <i class="fas fa-child me-2"></i>
+                <strong>Запрещается</strong> оставлять в ТС на время стоянки <strong>ребёнка младше 7 лет</strong> без совершеннолетнего лица.
+            </div>
+        </div>
+    </div>
+        <!-- Содержание -->
+    <div class="table-of-contents mb-5 p-4 bg-light rounded-3 shadow-sm">
+        <h5 class="mb-3 fw-bold">
+            <i class="fas fa-list-ul text-primary me-2"></i>Содержание
+        </h5>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="mb-0">
+                    <li><a href="#chapter1" class="text-decoration-none"><i class="fas fa-book-open me-2 text-primary"></i>Глава 1. Общие положения</a></li>
+                    <li class="mt-2"><a href="#chapter2" class="text-decoration-none"><i class="fas fa-car me-2 text-primary"></i>Глава 2. Общие обязанности водителей</a></li>
+                    <li class="mt-2"><a href="#chapter3" class="text-decoration-none"><i class="fas fa-lightbulb me-2 text-primary"></i>Глава 3. Применение специальных сигналов</a></li>
+                    <li class="mt-2"><a href="#chapter4" class="text-decoration-none"><i class="fas fa-walking me-2 text-primary"></i>Глава 4. Обязанности пешеходов</a></li>
+                    <li class="mt-2"><a href="#chapter5" class="text-decoration-none"><i class="fas fa-users me-2 text-primary"></i>Глава 5. Обязанности пассажиров</a></li>
+                    <li class="mt-2"><a href="#chapter6" class="text-decoration-none"><i class="fas fa-traffic-light me-2 text-primary"></i>Глава 6. Сигналы светофора и регулировщика</a></li>
+                    <li class="mt-2"><a href="#chapter7" class="text-decoration-none"><i class="fas fa-triangle-exclamation me-2 text-primary"></i>Глава 7. Применение аварийной сигнализации и знака аварийной остановки</a></li>
+                    <li class="mt-2"><a href="#chapter8" class="text-decoration-none"><i class="fas fa-exchange-alt me-2 text-primary"></i>Глава 8. Начало движения, маневрирование</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="mb-0">
+                    <li><a href="#chapter9" class="text-decoration-none"><i class="fas fa-road me-2 text-primary"></i>Глава 9. Расположение транспортных средств на проезжей части</a></li>
+                    <li class="mt-2"><a href="#chapter10" class="text-decoration-none"><i class="fas fa-tachometer-alt me-2 text-primary"></i>Глава 10. Скорость движения</a></li>
+                    <li class="mt-2"><a href="#chapter11" class="text-decoration-none"><i class="fas fa-forward me-2 text-primary"></i>Глава 11. Обгон, опережение, встречный разъезд</a></li>
+                    <li class="mt-2"><a href="#chapter12" class="text-decoration-none"><i class="fas fa-parking me-2 text-primary"></i>Глава 12. Остановка и стоянка</a></li>
+                    <li class="mt-2"><a href="#chapter13" class="text-decoration-none"><i class="fas fa-arrows-alt me-2 text-primary"></i>Глава 13. Проезд перекрёстков</a></li>
+                    <li class="mt-2"><a href="#chapter14" class="text-decoration-none"><i class="fas fa-person-walking-arrow-right me-2 text-primary"></i>Глава 14. Пешеходные переходы и места остановок маршрутных транспортных средств</a></li>
+                    <li class="mt-2"><a href="#chapter15" class="text-decoration-none"><i class="fas fa-train me-2 text-primary"></i>Глава 15. Движение через железнодорожные пути</a></li>
+                    <li class="mt-2"><a href="#chapter16" class="text-decoration-none"><i class="fas fa-road me-2 text-primary"></i>Глава 16. Движение по автомагистралям</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 13 ======================== -->
+    <div id="chapter13" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-arrows-alt fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 13. Проезд перекрёстков</h3>
+        </div>
+
+        <!-- 13.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.1</span>
+            </div>
+            <p class="rule-text">При повороте направо или налево водитель обязан <strong>уступить дорогу</strong> пешеходам, лицам на СИМ и велосипедистам, пересекающим проезжую часть дороги, на которую он поворачивает.</p>
+        </div>
+
+        <!-- 13.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.2</span>
+            </div>
+            <div class="alert alert-warning mb-0">
+                <i class="fas fa-car-side me-2"></i>
+                <strong>Запрещается выезжать на перекрёсток</strong>, если впереди образовался затор, который вынудит остановиться и создать препятствие для движения в поперечном направлении.
+            </div>
+        </div>
+
+        <!-- 13.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.3</span>
+            </div>
+            <p class="rule-text">Перекрёсток, где очередность определяется сигналами светофора или регулировщика — <strong>регулируемый</strong>. При жёлтом мигающем, неработающих светофорах или отсутствии регулировщика — <strong>нерегулируемый</strong>.</p>
+        </div>
+
+        <!-- 13.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.4</span>
+            </div>
+            <p class="rule-text">При повороте налево или развороте по зелёному сигналу водитель обязан <strong>уступить дорогу</strong> ТС, движущимся со встречного направления прямо или направо.</p>
+        </div>
+
+        <!-- 13.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.5</span>
+            </div>
+            <p class="rule-text">При движении по стрелке в дополнительной секции одновременно с жёлтым или красным — <strong>уступить дорогу</strong> ТС с других направлений.</p>
+        </div>
+
+        <!-- 13.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.6</span>
+            </div>
+            <p class="rule-text"><strong>Трамвай имеет преимущество</strong> перед безрельсовыми ТС независимо от направления движения. Исключение: движение по стрелке дополнительной секции одновременно с красным/жёлтым — трамвай уступает.</p>
+        </div>
+
+        <!-- 13.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.7</span>
+            </div>
+            <p class="rule-text">Въехавший на перекрёсток при разрешающем сигнале <strong>должен выехать</strong> независимо от сигналов на выходе.</p>
+        </div>
+
+        <!-- 13.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.8</span>
+            </div>
+            <p class="rule-text">При включении разрешающего сигнала <strong>уступить дорогу</strong> ТС, завершающим движение через перекрёсток, и пешеходам, не закончившим переход.</p>
+        </div>
+
+        <!-- 13.9 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.9</span>
+            </div>
+            <p class="rule-text">На перекрёстке неравнозначных дорог водитель по <strong>второстепенной</strong> уступает дорогу ТС по <strong>главной</strong>. Трамвай имеет преимущество перед безрельсовыми на равнозначной дороге.</p>
+        </div>
+
+        <!-- 13.10 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.10</span>
+            </div>
+            <p class="rule-text">Если главная дорога меняет направление, водители по главной руководствуются правилами проезда <strong>равнозначных</strong> перекрёстков.</p>
+        </div>
+
+        <!-- 13.11 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.11</span>
+            </div>
+            <p class="rule-text">На равнозначных перекрёстках — <strong>помеха справа</strong>. Трамвай имеет преимущество перед безрельсовыми.</p>
+        </div>
+
+        <!-- 13.11(1) -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">13.11(1)</span>
+            </div>
+            <div class="alert alert-info mb-0">
+                <i class="fas fa-sync-alt me-2"></i>
+                <strong>Круговое движение:</strong> при въезде на перекрёсток с круговым движением (знак 4.3) по дороге, не являющейся главной, водитель обязан <strong>уступить дорогу</strong> ТС, движущимся по такому перекрёстку.
+            </div>
+        </div>
+
+        <!-- 13.12 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.12</span>
+            </div>
+            <p class="rule-text">При повороте налево или развороте на равнозначной дороге — <strong>уступить дорогу</strong> встречным ТС, движущимся прямо или направо.</p>
+        </div>
+
+        <!-- 13.13 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">13.13</span>
+            </div>
+            <p class="rule-text">Если нельзя определить наличие покрытия (темнота, грязь, снег) и нет знаков приоритета — <strong>считать себя на второстепенной дороге</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 14 ======================== -->
+    <div id="chapter14" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-person-walking-arrow-right fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 14. Пешеходные переходы и места остановок маршрутных транспортных средств</h3>
+        </div>
+
+        <!-- 14.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.1</span>
+            </div>
+            <p class="rule-text">Приближаясь к <strong>нерегулируемому пешеходному переходу</strong>, водитель обязан <strong>уступить дорогу</strong> пешеходам, переходящим дорогу или вступившим на проезжую часть.</p>
+        </div>
+
+        <!-- 14.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.2</span>
+            </div>
+            <p class="rule-text">Если перед переходом остановилось или снизило скорость ТС, водители других ТС в том же направлении <strong>обязаны также остановиться или снизить скорость</strong>.</p>
+        </div>
+
+        <!-- 14.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.3</span>
+            </div>
+            <p class="rule-text">На регулируемых переходах при разрешающем сигнале водитель должен <strong>дать возможность</strong> пешеходам и лицам на СИМ закончить пересечение проезжей части.</p>
+        </div>
+
+        <!-- 14.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.4</span>
+            </div>
+            <div class="alert alert-warning mb-0">
+                <i class="fas fa-ban me-2"></i>
+                <strong>Запрещается въезжать на пешеходный переход</strong>, если за ним образовался затор, который вынудит остановиться на переходе.
+            </div>
+        </div>
+
+        <!-- 14.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.5</span>
+            </div>
+            <p class="rule-text">Водитель обязан <strong>пропустить слепых пешеходов</strong>, подающих сигнал белой тростью.</p>
+        </div>
+
+        <!-- 14.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.6</span>
+            </div>
+            <p class="rule-text">Уступить дорогу пешеходам, идущим к стоящему маршрутному ТС или от него, если посадка/высадка с проезжей части.</p>
+        </div>
+
+        <!-- 14.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">14.7</span>
+            </div>
+            <p class="rule-text">Приближаясь к ТС с аварийной сигнализацией и знаком <strong>"Перевозка детей"</strong>, водитель должен снизить скорость, при необходимости остановиться и пропустить детей.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 15 ======================== -->
+    <div id="chapter15" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-train fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 15. Движение через железнодорожные пути</h3>
+        </div>
+
+        <!-- 15.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">15.1</span>
+            </div>
+            <p class="rule-text">Пересекать ж/д пути можно только по <strong>железнодорожным переездам</strong>, уступая дорогу поезду (локомотиву, дрезине).</p>
+        </div>
+
+        <!-- 15.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">15.2</span>
+            </div>
+            <p class="rule-text">При подъезде руководствоваться знаками, светофорами, разметкой, положением шлагбаума и указаниями дежурного, убедиться в отсутствии поезда.</p>
+        </div>
+
+        <!-- 15.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">15.3</span>
+                <span class="rule-title fw-semibold text-danger">Запрещается выезжать на переезд</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-ban text-danger me-2"></i> при закрытом или закрывающемся шлагбауме</div>
+                <div class="col-md-6"><i class="fas fa-lightbulb text-danger me-2"></i> при запрещающем сигнале светофора</div>
+                <div class="col-md-6"><i class="fas fa-user-shield text-danger me-2"></i> при запрещающем сигнале дежурного</div>
+                <div class="col-md-6"><i class="fas fa-car-side text-danger me-2"></i> если за переездом затор</div>
+                <div class="col-md-6"><i class="fas fa-train text-danger me-2"></i> если приближается поезд</div>
+            </div>
+            <div class="alert alert-danger mt-3 mb-0">
+                <i class="fas fa-ban me-2"></i>
+                Также запрещается: объезжать с выездом на встречную полосу, самовольно открывать шлагбаум, провозить механизмы в нетранспортном положении.
+            </div>
+        </div>
+
+        <!-- 15.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">15.4</span>
+            </div>
+            <p class="rule-text">При запрете движения остановиться у стоп-линии или знака 2.5. Если их нет — не ближе <strong>5 м</strong> от светофора/шлагбаума, а при их отсутствии — не ближе <strong>10 м</strong> до ближайшего рельса.</p>
+        </div>
+
+        <!-- 15.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">15.5</span>
+            </div>
+            <p class="rule-text fw-semibold">При вынужденной остановке на переезде:</p>
+            <ul class="mt-2 ps-4">
+                <li>немедленно высадить людей и принять меры для освобождения переезда;</li>
+                <li>послать двух человек вдоль путей на 1000 м для подачи сигнала остановки;</li>
+                <li>оставаться у ТС и подавать сигналы общей тревоги;</li>
+                <li>при появлении поезда бежать навстречу, подавая сигнал остановки.</li>
+            </ul>
+            <div class="alert alert-secondary small mt-2 mb-0">
+                <i class="fas fa-info-circle me-1"></i>
+                <strong>Сигнал остановки:</strong> круговое движение руки (днём с яркой тканью, ночью с факелом или фонарём).<br>
+                <strong>Сигнал общей тревоги:</strong> серии из одного длинного и трёх коротких звуковых сигналов.
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 16 ======================== -->
+    <div id="chapter16" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-road fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 16. Движение по автомагистралям</h3>
+        </div>
+
+        <!-- 16.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-3">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">16.1</span>
+                <span class="rule-title fw-semibold text-danger">На автомагистралях запрещается</span>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-6"><i class="fas fa-person-walking text-danger me-2"></i> движение пешеходов, лиц на СИМ, домашних животных</div>
+                <div class="col-md-6"><i class="fas fa-bicycle text-danger me-2"></i> движение велосипедов, мопедов</div>
+                <div class="col-md-6"><i class="fas fa-tractor text-danger me-2"></i> движение тракторов и самоходных машин, ТС со скоростью &lt;40 км/ч</div>
+                <div class="col-md-6"><i class="fas fa-truck text-danger me-2"></i> грузовым ТС >3,5 т — далее второй полосы</div>
+                <div class="col-md-6"><i class="fas fa-parking text-danger me-2"></i> остановка вне спецплощадок (знак 6.4 или 7.11)</div>
+                <div class="col-md-6"><i class="fas fa-undo-alt text-danger me-2"></i> разворот и въезд в технологические разрывы</div>
+                <div class="col-md-6"><i class="fas fa-arrow-left text-danger me-2"></i> движение задним ходом</div>
+            </div>
+        </div>
+
+        <!-- 16.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">16.2</span>
+            </div>
+            <p class="rule-text">При вынужденной остановке на проезжей части — обозначить ТС (раздел 7) и принять меры для вывода его на предназначенную полосу.</p>
+        </div>
+
+        <!-- 16.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">16.3</span>
+            </div>
+            <p class="rule-text">Требования раздела распространяются также на дороги, обозначенные знаком <strong>5.3 "Дорога для автомобилей"</strong>.</p>
+        </div>
+    </div>
+        <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 17 ======================== -->
+    <div id="chapter17" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-home fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 17. Движение в жилых зонах</h3>
+        </div>
+
+        <!-- 17.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">17.1</span>
+            </div>
+            <p class="rule-text">В жилой зоне (знаки 5.21 и 5.22) движение пешеходов разрешается как по тротуарам, так и по проезжей части. Пешеходы имеют <strong>преимущество</strong>, но не должны создавать необоснованные помехи для ТС и лиц на СИМ.</p>
+        </div>
+
+        <!-- 17.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">17.2</span>
+                <span class="rule-title fw-semibold text-danger">В жилой зоне запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-forward text-danger me-2"></i> сквозное движение механических ТС</div>
+                <div class="col-md-6"><i class="fas fa-chalkboard-user text-danger me-2"></i> учебная езда</div>
+                <div class="col-md-6"><i class="fas fa-car-side text-danger me-2"></i> стоянка с работающим двигателем</div>
+                <div class="col-md-6"><i class="fas fa-truck text-danger me-2"></i> стоянка грузовых ТС >3,5 т и автобусов вне специальных мест</div>
+            </div>
+        </div>
+
+        <!-- 17.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">17.3</span>
+            </div>
+            <p class="rule-text">При выезде из жилой зоны водители и лица на СИМ должны <strong>уступить дорогу</strong> другим участникам движения.</p>
+        </div>
+
+        <!-- 17.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">17.4</span>
+            </div>
+            <p class="rule-text">Требования раздела распространяются также на <strong>дворовые территории</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 18 ======================== -->
+    <div id="chapter18" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-bus fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 18. Приоритет маршрутных транспортных средств</h3>
+        </div>
+
+        <!-- 18.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">18.1</span>
+            </div>
+            <p class="rule-text">Вне перекрёстков, где трамвайные пути пересекают проезжую часть, <strong>трамвай имеет преимущество</strong> перед безрельсовыми ТС, кроме случаев выезда из депо.</p>
+        </div>
+
+        <!-- 18.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">18.2</span>
+                <span class="rule-title fw-semibold text-secondary">Полоса для маршрутных ТС</span>
+            </div>
+            <p class="rule-text">На дорогах с полосой для маршрутных ТС (знаки 5.11.1, 5.13.1, 5.13.2, 5.14.1) <strong>запрещаются движение и остановка</strong> других ТС на этой полосе, <strong>за исключением</strong>:</p>
+            <ul class="mt-2 ps-4">
+                <li>школьных автобусов;</li>
+                <li>легковых такси;</li>
+                <li>транспорта для перевозки пассажиров (>8 мест, масса >5 т) — в Москве, СПб, Севастополе по утверждённому перечню.</li>
+            </ul>
+            <p class="rule-text mt-2">На таких полосах разрешено движение <strong>велосипедистов</strong>, если полоса располагается справа.</p>
+        </div>
+
+        <!-- 18.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">18.3</span>
+            </div>
+            <p class="rule-text">В населённых пунктах водители должны <strong>уступить дорогу</strong> троллейбусам и автобусам, начинающим движение от обозначенного места остановки.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 20 ======================== -->
+    <div id="chapter20" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-tow-truck fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 20. Буксировка механических транспортных средств</h3>
+        </div>
+
+        <!-- 20.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">20.1</span>
+            </div>
+            <p class="rule-text">Буксировка на жесткой или гибкой сцепке — только при наличии водителя за рулём буксируемого ТС, кроме случаев, когда конструкция жесткой сцепки обеспечивает следование по траектории буксирующего.</p>
+        </div>
+
+        <!-- 20.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">20.2</span>
+            </div>
+            <p class="rule-text">При буксировке на гибкой или жесткой сцепке <strong>запрещается перевозка людей</strong> в буксируемом автобусе, троллейбусе и в кузове буксируемого грузового ТС.</p>
+        </div>
+
+        <!-- 20.2(1) -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">20.2(1)</span>
+            </div>
+            <p class="rule-text">Управление буксирующими ТС должно осуществляться водителями, имеющими право управления ТС в течение <strong>2 и более лет</strong>.</p>
+        </div>
+
+        <!-- 20.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">20.3</span>
+            </div>
+            <p class="rule-text">Расстояние между ТС: на гибкой сцепке — <strong>4–6 м</strong>, на жесткой — <strong>не более 4 м</strong>. Гибкое звено должно быть обозначено.</p>
+        </div>
+
+        <!-- 20.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">20.4</span>
+                <span class="rule-title fw-semibold text-danger">Буксировка запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-steering-wheel text-danger me-2"></i> ТС с недействующим рулевым управлением (кроме частичной погрузки)</div>
+                <div class="col-md-6"><i class="fas fa-link text-danger me-2"></i> двух и более ТС</div>
+                <div class="col-md-6"><i class="fas fa-brake-warning text-danger me-2"></i> ТС с недействующей тормозной системой, если их масса > половины массы буксирующего</div>
+                <div class="col-md-6"><i class="fas fa-motorcycle text-danger me-2"></i> двухколёсными мотоциклами без прицепа</div>
+                <div class="col-md-6"><i class="fas fa-icicles text-danger me-2"></i> в гололедицу на гибкой сцепке</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 21 ======================== -->
+    <div id="chapter21" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-chalkboard-user fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 21. Учебная езда</h3>
+        </div>
+
+        <!-- 21.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">21.1</span>
+            </div>
+            <p class="rule-text">Обучение первоначальным навыкам управления ТС должно проводиться на <strong>закрытых площадках или автодромах</strong>.</p>
+        </div>
+
+        <!-- 21.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">21.2</span>
+            </div>
+            <p class="rule-text">Учебная езда на дорогах допускается <strong>только с обучающим вождению</strong>.</p>
+        </div>
+
+        <!-- 21.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">21.3</span>
+            </div>
+            <p class="rule-text">Обучающий должен находиться на сиденье с доступом к дублирующим органам управления, иметь документ на право обучения и водительское удостоверение.</p>
+        </div>
+
+        <!-- 21.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">21.4</span>
+                <span class="rule-title fw-semibold text-secondary">Возраст обучающихся</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-car text-primary me-2"></i> Категории "B", "C", "C1" — <strong>16 лет</strong></div>
+                <div class="col-md-6"><i class="fas fa-bus text-primary me-2"></i> Категории "D", "D1", "Tb", "Tm" — <strong>20 лет</strong> (18 лет для лиц по ст.26 ФЗ)</div>
+            </div>
+        </div>
+
+        <!-- 21.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">21.5</span>
+            </div>
+            <p class="rule-text">Учебное ТС должно быть оборудовано по Основным положениям и иметь опознавательный знак <strong>"Учебное транспортное средство"</strong>.</p>
+        </div>
+
+        <!-- 21.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">21.6</span>
+            </div>
+            <p class="rule-text">Запрещается учебная езда на дорогах, перечень которых объявляется в установленном порядке.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 22 ======================== -->
+    <div id="chapter22" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-users fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 22. Перевозка людей</h3>
+        </div>
+
+        <!-- 22.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.1</span>
+            </div>
+            <p class="rule-text">Перевозка людей в кузове грузового автомобиля — водителями с категорией "C" или "C1" <strong>не менее 3 лет</strong>.</p>
+        </div>
+
+        <!-- 22.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.2</span>
+            </div>
+            <p class="rule-text">Перевозка людей в кузове с бортовой платформой разрешена, если он оборудован по Основным положениям. <strong>Перевозка детей запрещена</strong>.</p>
+        </div>
+
+        <!-- 22.2(1) -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">22.2(1)</span>
+            </div>
+            <p class="rule-text">Перевозка людей на мотоцикле — водителем с категорией "A" или "A1" <strong>не менее 2 лет</strong>. На мопеде — водителем с любыми правами <strong>не менее 2 лет</strong>.</p>
+        </div>
+
+        <!-- 22.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.3</span>
+            </div>
+            <p class="rule-text">Число перевозимых людей <strong>не должно превышать количества оборудованных для сидения мест</strong>.</p>
+        </div>
+
+        <!-- 22.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.4</span>
+            </div>
+            <p class="rule-text">Водитель грузового автомобиля должен <strong>проинструктировать пассажиров</strong> перед поездкой. Начинать движение — убедившись в безопасности.</p>
+        </div>
+
+        <!-- 22.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.5</span>
+            </div>
+            <p class="rule-text">Проезд в кузове без оборудования — только для сопровождающих груз, с местом для сидения ниже уровня бортов.</p>
+        </div>
+
+        <!-- 22.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.6</span>
+            </div>
+            <p class="rule-text">Организованная перевозка детей — в автобусе со знаком <strong>"Перевозка детей"</strong>, по особым правилам.</p>
+        </div>
+
+        <!-- 22.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.7</span>
+            </div>
+            <p class="rule-text">Посадка и высадка — <strong>только после полной остановки</strong>. Движение — только с закрытыми дверями.</p>
+        </div>
+
+        <!-- 22.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.8</span>
+                <span class="rule-title fw-semibold text-danger">Запрещается перевозить людей</span>
+            </div>
+            <ul class="mt-2 ps-4">
+                <li>вне кабины автомобиля (кроме оборудованного кузова), трактора, на грузовом прицепе, в прицепе-даче;</li>
+                <li>сверх количества, предусмотренного теххарактеристикой ТС.</li>
+            </ul>
+        </div>
+
+        <!-- 22.9 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">22.9</span>
+                <span class="rule-title fw-semibold text-secondary">Перевозка детей</span>
+            </div>
+            <p class="rule-text"><strong>Дети до 7 лет</strong> — только с использованием детских удерживающих систем (устройств), соответствующих весу и росту.</p>
+            <p class="rule-text mt-2"><strong>Дети от 7 до 11 лет включительно</strong> — на заднем сиденье с ДУУ или ремнями безопасности; на переднем сиденье — <strong>только с ДУУ</strong>.</p>
+            <div class="alert alert-danger mt-2 mb-0">
+                <i class="fas fa-motorcycle me-2"></i>
+                <strong>Запрещается</strong> перевозить детей младше 12 лет на заднем сиденье мотоцикла.
+            </div>
+        </div>
+    </div>
+        <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 23 ======================== -->
+    <div id="chapter23" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-boxes fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 23. Перевозка грузов</h3>
+        </div>
+
+        <!-- 23.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">23.1</span>
+            </div>
+            <p class="rule-text">Масса перевозимого груза и распределение нагрузки по осям <strong>не должны превышать</strong> величин, установленных предприятием-изготовителем для данного ТС.</p>
+        </div>
+
+        <!-- 23.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">23.2</span>
+            </div>
+            <p class="rule-text">Перед началом и во время движения водитель обязан <strong>контролировать</strong> размещение, крепление и состояние груза во избежание его падения, создания помех.</p>
+        </div>
+
+        <!-- 23.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">23.3</span>
+            </div>
+            <p class="rule-text">Перевозка груза допускается при условии, что он:</p>
+            <ul class="mt-2 ps-4">
+                <li>не ограничивает водителю обзор;</li>
+                <li>не затрудняет управление и не нарушает устойчивость ТС;</li>
+                <li>не закрывает внешние световые приборы, световозвращатели, регистрационные и опознавательные знаки;</li>
+                <li>не создаёт шум, не пылит, не загрязняет дорогу и окружающую среду.</li>
+            </ul>
+        </div>
+
+        <!-- 23.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">23.4</span>
+            </div>
+            <p class="rule-text">Груз, выступающий за габариты ТС спереди или сзади более чем на <strong>1 м</strong> или сбоку более чем на <strong>0,4 м</strong>, должен быть обозначен знаком <strong>"Крупногабаритный груз"</strong>, а в тёмное время суток — спереди фонарём или световозвращателем белого цвета, сзади — красного.</p>
+        </div>
+
+        <!-- 23.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">23.5</span>
+            </div>
+            <p class="rule-text">Движение тяжеловесного, крупногабаритного ТС и ТС с опасными грузами — с учётом требований Федерального закона об автомобильных дорогах.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 24 ======================== -->
+    <div id="chapter24" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-bicycle fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 24. Дополнительные требования к движению велосипедистов и водителей средств индивидуальной мобильности</h3>
+        </div>
+
+        <!-- 24.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.1</span>
+            </div>
+            <p class="rule-text">Движение велосипедистов и лиц на СИМ старше 14 лет — по велосипедной, велопешеходной дорожкам, проезжей части велосипедной зоны или полосе для велосипедистов.</p>
+        </div>
+
+        <!-- 24.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.2</span>
+            </div>
+            <p class="rule-text fw-semibold">Допускается движение велосипедистов старше 14 лет:</p>
+            <ul class="mt-2 ps-4">
+                <li>по <strong>правому краю проезжей части</strong> — при отсутствии велодорожек, ширине велосипеда/груза >1 м, в колоннах;</li>
+                <li>по <strong>обочине</strong> — при отсутствии велодорожек и возможности движения по правому краю;</li>
+                <li>по <strong>тротуару или пешеходной дорожке</strong> — при отсутствии других вариантов, а также при сопровождении ребёнка до 14 лет или перевозке ребёнка до 7 лет.</li>
+            </ul>
+        </div>
+
+        <!-- 24.2(1) -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">24.2(1)</span>
+            </div>
+            <p class="rule-text fw-semibold">Допускается движение лиц на СИМ старше 14 лет (масса СИМ ≤35 кг):</p>
+            <ul class="mt-2 ps-4">
+                <li>по <strong>тротуару, пешеходной дорожке</strong> — при отсутствии велодорожек или при сопровождении ребёнка до 14 лет;</li>
+                <li>по <strong>обочине</strong> — при отсутствии велодорожек, тротуаров;</li>
+                <li>по <strong>правому краю проезжей части</strong> — при отсутствии других вариантов, скорости ≤60 км/ч, наличии тормозов, звукового сигнала, световозвращателей и фары.</li>
+            </ul>
+        </div>
+
+        <!-- 24.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.3</span>
+            </div>
+            <p class="rule-text">Движение велосипедистов и лиц на СИМ в возрасте <strong>от 7 до 14 лет</strong> — только по тротуарам, пешеходным, велосипедным, велопешеходным дорожкам, в пешеходных зонах.</p>
+        </div>
+
+        <!-- 24.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.4</span>
+            </div>
+            <p class="rule-text">Движение велосипедистов и детей на СИМ <strong>младше 7 лет</strong> — только по тротуарам, пешеходным, велопешеходным дорожкам, пешеходным зонам <strong>в сопровождении взрослых</strong>.</p>
+        </div>
+
+        <!-- 24.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.5</span>
+            </div>
+            <p class="rule-text">Движение по правому краю проезжей части — <strong>только в один ряд</strong>. Колонна велосипедистов в два ряда — при ширине велосипедов ≤0,75 м. Расстояние между группами — <strong>80–100 м</strong>.</p>
+        </div>
+
+        <!-- 24.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.6</span>
+            </div>
+            <p class="rule-text">Скорость движения лиц на СИМ — <strong>не более 25 км/ч</strong>. При движении по тротуарам/пешеходным зонам, если создаётся помеха пешеходам, велосипедист должен спешиться, а лицо на СИМ — снизить скорость до скорости пешеходов. <strong>Пешеходы имеют приоритет.</strong></p>
+        </div>
+
+        <!-- 24.6(1) -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">24.6(1)</span>
+            </div>
+            <p class="rule-text">При пересечении проезжей части вне перекрёстка велосипедист/лицо на СИМ обязаны <strong>уступить дорогу</strong> другим участникам движения.</p>
+        </div>
+
+        <!-- 24.7 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.7</span>
+            </div>
+            <p class="rule-text">Водители мопедов — по правому краю проезжей части в один ряд или по полосе для велосипедистов, по обочине (без помех пешеходам).</p>
+        </div>
+
+        <!-- 24.8 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.8</span>
+                <span class="rule-title fw-semibold text-danger">Запрещается</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-hand-paper text-danger me-2"></i> управлять, не держась за руль хотя бы одной рукой</div>
+                <div class="col-md-6"><i class="fas fa-boxes text-danger me-2"></i> перевозить груз, выступающий >0,5 м</div>
+                <div class="col-md-6"><i class="fas fa-child text-danger me-2"></i> перевозить детей до 7 лет без спецмест</div>
+                <div class="col-md-6"><i class="fas fa-arrow-left text-danger me-2"></i> поворачивать налево/разворачиваться на дорогах с трамваем и с >1 полосой</div>
+                <div class="col-md-6"><i class="fas fa-motorcycle text-danger me-2"></i> ездить на мопеде без застёгнутого мотошлема</div>
+                <div class="col-md-6"><i class="fas fa-person-walking-arrow-right text-danger me-2"></i> пересекать дорогу по пешеходным переходам</div>
+            </div>
+        </div>
+
+        <!-- 24.9 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.9</span>
+            </div>
+            <p class="rule-text"><strong>Запрещается</strong> буксировка велосипедов, СИМ и мопедов, кроме буксировки прицепа, предназначенного для них.</p>
+        </div>
+
+        <!-- 24.10 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.10</span>
+            </div>
+            <p class="rule-text">В тёмное время суток велосипедистам, лицам на СИМ и водителям мопедов <strong>рекомендуется</strong>, а вне населённых пунктов <strong>обязательно</strong> иметь при себе предметы со световозвращающими элементами.</p>
+        </div>
+
+        <!-- 24.11 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">24.11</span>
+            </div>
+            <p class="rule-text">В <strong>велосипедной зоне</strong> велосипедисты и лица на СИМ имеют преимущество перед механическими ТС, пешеходам разрешается переходить проезжую часть в любом месте.</p>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 25 ======================== -->
+    <div id="chapter25" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-horse fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 25. Дополнительные требования к движению гужевых повозок, а также прогону животных</h3>
+        </div>
+
+        <!-- 25.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">25.1</span>
+            </div>
+            <p class="rule-text">Управлять гужевой повозкой (санями), быть погонщиком вьючных, верховых животных или стада разрешается лицам <strong>не моложе 14 лет</strong>.</p>
+        </div>
+
+        <!-- 25.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">25.2</span>
+            </div>
+            <p class="rule-text">Гужевые повозки, верховые и вьючные животные — только в один ряд, возможно правее. Колонны: до 10 животных или 5 повозок, расстояние между группами <strong>80–100 м</strong>.</p>
+        </div>
+
+        <!-- 25.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">25.3</span>
+            </div>
+            <p class="rule-text">При выезде на дорогу с прилегающей территории в местах с ограниченной обзорностью водитель гужевой повозки должен <strong>вести животное под уздцы</strong>.</p>
+        </div>
+
+        <!-- 25.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">25.4</span>
+            </div>
+            <p class="rule-text">Животных перегонять, как правило, в <strong>светлое время суток</strong>, направляя как можно ближе к правому краю дороги.</p>
+        </div>
+
+        <!-- 25.5 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">25.5</span>
+            </div>
+            <p class="rule-text">При прогоне животных через ж/д пути стадо делить на группы для безопасного прогона.</p>
+        </div>
+
+        <!-- 25.6 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">25.6</span>
+                <span class="rule-title fw-semibold text-danger">Запрещается</span>
+            </div>
+            <ul class="mt-2 ps-4">
+                <li>оставлять на дороге животных без надзора;</li>
+                <li>прогонять животных через ж/д пути и дороги вне специальных мест, в тёмное время суток и при недостаточной видимости;</li>
+                <li>вести животных по дороге с асфальто- и цементобетонным покрытием при наличии иных путей.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Навигация между главами -->
+    <div class="chapter-nav text-center my-4">
+        <a href="#" onclick="scrollToTop(); return false;" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-up me-1"></i> Назад к оглавлению
+        </a>
+    </div>
+
+    <!-- ======================== ГЛАВА 26 ======================== -->
+    <div id="chapter26" class="chapter-block">
+        <div class="chapter-header d-flex align-items-center gap-3 mb-4 pb-2 border-bottom border-primary">
+            <div class="chapter-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="fas fa-clock fs-4"></i>
+            </div>
+            <h3 class="text-primary fw-bold m-0">Глава 26. Нормы времени управления транспортным средством и отдыха</h3>
+        </div>
+
+        <div class="alert alert-info mb-4">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Примечание:</strong> Положения раздела применяются в отношении физических лиц, эксплуатирующих грузовые автомобили >3500 кг и автобусы. Они обязаны предоставлять доступ к тахографу и карте водителя.
+        </div>
+
+        <!-- 26.1 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">26.1</span>
+            </div>
+            <p class="rule-text">Не позднее <strong>4 часов 30 минут</strong> управления водитель обязан сделать перерыв для отдыха продолжительностью не менее <strong>45 минут</strong> (может быть разделён на 2 части: первая ≥15 мин, последняя ≥30 мин).</p>
+        </div>
+
+        <!-- 26.2 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">26.2</span>
+                <span class="rule-title fw-semibold text-secondary">Предельное время управления</span>
+            </div>
+            <div class="row g-2 mt-1">
+                <div class="col-md-6"><i class="fas fa-hourglass-half text-primary me-2"></i> <strong>9 часов</strong> в течение 24 часов (до 10 часов, но не более 2 раз в неделю)</div>
+                <div class="col-md-6"><i class="fas fa-calendar-week text-primary me-2"></i> <strong>56 часов</strong> в течение календарной недели</div>
+                <div class="col-md-6"><i class="fas fa-calendar-alt text-primary me-2"></i> <strong>90 часов</strong> в течение 2 календарных недель</div>
+            </div>
+        </div>
+
+        <!-- 26.3 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">26.3</span>
+                <span class="rule-title fw-semibold text-secondary">Отдых</span>
+            </div>
+            <p class="rule-text"><strong>Ежедневный отдых:</strong> не менее 11 часов (допускается сокращение до 9 часов, не более 3 раз между еженедельными отдыхами).</p>
+            <p class="rule-text mt-2"><strong>Еженедельный отдых:</strong> не менее 45 часов (допускается сокращение до 24 часов, не более 1 раза в 2 недели, разница должна быть компенсирована в течение 3 недель).</p>
+        </div>
+
+        <!-- 26.4 -->
+        <div class="rule-card mb-4 p-4 rounded-3 border shadow-sm">
+            <div class="rule-number-wrap d-flex align-items-center gap-3 mb-2">
+                <span class="rule-number-badge bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">26.4</span>
+            </div>
+            <p class="rule-text">При достижении предельного времени управления и отсутствии места стоянки водитель вправе увеличить управление до ближайшего места стоянки:</p>
+            <ul class="mt-2 ps-4">
+                <li>на <strong>1 час</strong> — для случая по п.26.1;</li>
+                <li>на <strong>2 часа</strong> — для случая по п.26.2 (9→10 часов).</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Информационное предупреждение -->
+    <div class="alert alert-info mt-5 p-4 rounded-3">
+        <i class="fas fa-info-circle fa-lg me-3 float-start mt-1"></i>
+        <strong>Внимание!</strong> Данная информация носит ознакомительный характер. Для получения актуальной и полной информации обращайтесь к официальному тексту ПДД РФ.
+    </div>
+</div>
+
+<style>
+    /* Общие стили */
+    .rule-card {
+        transition: all 0.25s ease;
+        background-color: #ffffff;
+        border-color: #e0e0e0 !important;
+    }
+    .rule-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
+        border-color: #0d6efd !important;
+    }
+    .rule-number-badge {
+        background-color: #212529 !important;
+        font-size: 1rem;
+    }
+    .rule-text {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #2c3e50;
+    }
+    .term-card {
+        transition: all 0.2s ease;
+        border-left: 3px solid #198754;
+    }
+    .term-card:hover {
+        background-color: #e9f5ee !important;
+    }
+    .doc-item, .prohibition-item {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+    .chapter-icon {
+        box-shadow: 0 4px 10px rgba(13,110,253,0.3);
+    }
+    .table-of-contents a:hover {
+        color: #0a58ca !important;
+        text-decoration: underline !important;
+    }
+    @media (max-width: 768px) {
+        .rule-card {
+            padding: 1rem !important;
+        }
+        .term-card {
+            margin-bottom: 0.5rem;
+        }
+    }
+</style>
+
+<script>
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+{% endblock %}

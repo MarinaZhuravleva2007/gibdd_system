@@ -1,0 +1,474 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    :root {
+        --dark-blue: #0f172a;
+        --dark-blue-light: #1a2a4a;
+        --dark-blue-card: #0a1628;
+        --gold: #c9a84c;
+        --gold-light: #e8d5a3;
+    }
+
+    .edit-wrapper {
+        background: #f1f5f9;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+
+    .edit-card {
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 15px 40px rgba(10, 22, 40, 0.12);
+        overflow: hidden;
+        border: none;
+    }
+
+    .edit-header {
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0f172a 100%);
+        padding: 1.75rem 2.5rem;
+        border-bottom: 3px solid var(--gold);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .edit-header h3 {
+        color: #ffffff;
+        font-weight: 700;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+
+    .edit-header h3 i {
+        color: var(--gold);
+    }
+
+    .btn-back-custom {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: #ffffff;
+        padding: 0.5rem 1.8rem;
+        border-radius: 40px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-back-custom:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #0a1628;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(201, 168, 76, 0.3);
+    }
+
+    .edit-body {
+        padding: 2.5rem;
+    }
+
+    .form-label-custom {
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-label-custom .required-star {
+        color: #dc3545;
+        font-weight: 700;
+    }
+
+    .form-control-custom {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        width: 100%;
+        background: #fafbfc;
+    }
+
+    .form-control-custom:focus {
+        border-color: var(--dark-blue);
+        box-shadow: 0 0 0 3px rgba(10, 22, 40, 0.15);
+        background: #ffffff;
+        outline: none;
+    }
+
+    .form-control-custom:hover {
+        border-color: #94a3b8;
+    }
+
+    textarea.form-control-custom {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    input[type="text"].form-control-custom,
+    input[type="email"].form-control-custom,
+    input[type="date"].form-control-custom,
+    input[type="number"].form-control-custom {
+        font-family: 'Inter', sans-serif;
+    }
+
+    .plate-input-custom {
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        background: #f8fafc !important;
+    }
+
+    .plate-input-custom:focus {
+        background: #ffffff !important;
+    }
+
+    .form-hint {
+        color: #94a3b8;
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
+        display: block;
+    }
+
+    .form-hint i {
+        margin-right: 0.25rem;
+    }
+
+    .section-divider {
+        border: 0;
+        border-top: 2px solid #eef2f6;
+        margin: 1.5rem 0;
+    }
+
+    .section-title-custom {
+        color: #0a1628;
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin: 1.5rem 0 1.25rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .section-title-custom i {
+        color: var(--gold);
+    }
+
+    .btn-save-custom {
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+        border: none;
+        color: white;
+        padding: 0.8rem 2.5rem;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+    }
+
+    .btn-save-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(10, 22, 40, 0.3);
+        background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);
+        color: white;
+    }
+
+    .btn-cancel-custom {
+        background: #e2e8f0;
+        border: none;
+        color: #475569;
+        padding: 0.8rem 2.5rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-cancel-custom:hover {
+        background: #cbd5e1;
+        color: #1e293b;
+        transform: translateY(-2px);
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .alert-age {
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        border: none;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: #fef2f2;
+        color: #991b1b;
+        border-left: 4px solid #dc3545;
+        margin-bottom: 1rem;
+        display: none;
+    }
+
+    .alert-age.show {
+        display: flex;
+    }
+
+    .alert-age i {
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        .edit-header {
+            flex-direction: column;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .edit-body {
+            padding: 1.5rem;
+        }
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .btn-save-custom,
+        .btn-cancel-custom {
+            width: 100%;
+            justify-content: center;
+        }
+        .d-flex.gap-3 {
+            flex-direction: column;
+        }
+    }
+
+    @media print {
+        .btn-save-custom,
+        .btn-cancel-custom,
+        .btn-back-custom {
+            display: none !important;
+        }
+        .edit-header {
+            background: #f8f9fa !important;
+            border-bottom: 2px solid #000 !important;
+        }
+        .edit-header h3 {
+            color: #000 !important;
+        }
+        .edit-card {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+        }
+        .form-control-custom {
+            border: 1px solid #ddd !important;
+        }
+        .section-title-custom {
+            border-bottom-color: #000 !important;
+        }
+        .section-title-custom i {
+            color: #000 !important;
+        }
+    }
+</style>
+
+<div class="edit-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="edit-card">
+
+                    <div class="edit-header">
+                        <h3>
+                            <i class="fas fa-edit"></i>
+                            Редактирование профиля
+                        </h3>
+                        <a href="{% url 'profile' %}" class="btn-back-custom">
+                            <i class="fas fa-arrow-left me-2"></i>Назад
+                        </a>
+                    </div>
+
+                    <div class="edit-body">
+                        <form method="post" id="profileForm">
+                            {% csrf_token %}
+
+                            <!-- ПРОВЕРКА ВОЗРАСТА -->
+                            <div class="alert-age" id="ageWarning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span><strong>Ошибка!</strong> Вам должно быть не менее 18 лет.</span>
+                            </div>
+
+                            <div class="section-title-custom">
+                                <i class="fas fa-user"></i> Личные данные
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="mb-3">
+                                    <label class="form-label-custom">
+                                        ФИО <span class="required-star">*</span>
+                                    </label>
+                                    <input type="text" name="full_name" class="form-control-custom" value="{{ user.full_name }}" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">
+                                        Телефон <span class="required-star">*</span>
+                                    </label>
+                                    <input type="text" name="phone" class="form-control-custom" value="{{ user.phone }}" placeholder="+7XXXXXXXXXX">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">Email</label>
+                                    <input type="email" name="email" class="form-control-custom" value="{{ user.email }}" placeholder="example@mail.ru">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">Дата рождения</label>
+                                    <input type="date" name="birth_date" id="birthDate" class="form-control-custom" value="{{ user.birth_date|date:'Y-m-d' }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label-custom">Адрес</label>
+                                <textarea name="address" class="form-control-custom" rows="2">{{ user.address }}</textarea>
+                            </div>
+
+                            <hr class="section-divider">
+
+                            {% if user.role == 'driver' %}
+                            <div class="section-title-custom">
+                                <i class="fas fa-car"></i> Данные автомобиля
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label-custom">
+                                    🚘 Государственный номер <span class="required-star">*</span>
+                                </label>
+                                <input type="text"
+                                       name="full_license_plate"
+                                       class="form-control-custom plate-input-custom"
+                                       value="{{ user.full_license_plate|default:'' }}"
+                                       placeholder="А945ОА25">
+                                <span class="form-hint">
+                                    <i class="fas fa-info-circle"></i>
+                                    Формат: буква, 3 цифры, 2 буквы, 2-3 цифры региона.
+                                    Примеры: А123ВС777, В543ОР99, М777АА178
+                                </span>
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="mb-3">
+                                    <label class="form-label-custom">Марка</label>
+                                    <input type="text" name="car_brand" class="form-control-custom" value="{{ user.car_brand|default:'' }}" placeholder="Toyota">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">Модель</label>
+                                    <input type="text" name="car_model" class="form-control-custom" value="{{ user.car_model|default:'' }}" placeholder="Camry">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">Год выпуска</label>
+                                    <input type="number" name="car_year" class="form-control-custom" value="{{ user.car_year|default:'' }}" placeholder="2020">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">VIN-номер</label>
+                                    <input type="text" name="vin_number" class="form-control-custom" value="{{ user.vin_number|default:'' }}" placeholder="XTA12345678901234">
+                                    <span class="form-hint">17 символов (латиница и цифры)</span>
+                                </div>
+                            </div>
+
+                            <hr class="section-divider">
+                            {% endif %}
+
+                            <div class="d-flex gap-3 mt-4 flex-wrap">
+                                <button type="submit" class="btn-save-custom">
+                                    <i class="fas fa-save"></i> Сохранить изменения
+                                </button>
+                                <a href="{% url 'profile' %}" class="btn-cancel-custom">
+                                    <i class="fas fa-times"></i> Отмена
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const birthDateInput = document.getElementById('birthDate');
+    const ageWarning = document.getElementById('ageWarning');
+    const form = document.getElementById('profileForm');
+
+    function checkAge() {
+        if (!birthDateInput || !birthDateInput.value) {
+            if (ageWarning) ageWarning.classList.remove('show');
+            return true;
+        }
+
+        const birthDate = new Date(birthDateInput.value);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        if (age < 18) {
+            if (ageWarning) ageWarning.classList.add('show');
+            return false;
+        } else {
+            if (ageWarning) ageWarning.classList.remove('show');
+            return true;
+        }
+    }
+
+    if (birthDateInput) {
+        birthDateInput.addEventListener('change', checkAge);
+        birthDateInput.addEventListener('input', checkAge);
+        checkAge();
+    }
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            if (!checkAge()) {
+                e.preventDefault();
+                if (birthDateInput) {
+                    birthDateInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    birthDateInput.focus();
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

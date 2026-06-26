@@ -1,0 +1,419 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Профиль инспектора{% endblock %}
+
+{% block content %}
+<style>
+    .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .profile-header {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-radius: 24px;
+        padding: 40px;
+        color: white;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin-right: 20px;
+    }
+
+    .profile-title h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .profile-title p {
+        opacity: 0.8;
+        margin: 0;
+    }
+
+    .status-badge {
+        padding: 8px 20px;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .status-active {
+        background: #10b981;
+        color: white;
+    }
+
+    .status-dismissed {
+        background: #ef4444;
+        color: white;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #1e293b;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 5px;
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+    }
+
+    .info-card h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .info-value {
+        color: #1e293b;
+    }
+
+    .violations-table {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .violations-table h3 {
+        padding: 20px 25px;
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #f8fafc;
+        padding: 12px 20px;
+        text-align: left;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #475569;
+        text-transform: uppercase;
+    }
+
+    td {
+        padding: 12px 20px;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.9rem;
+    }
+
+    .clickable-row {
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .clickable-row:hover {
+        background: #f1f5f9;
+    }
+
+    .badge-status {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .status-registered {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .status-paid {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .status-appealed {
+        background: #fef3c7;
+        color: #92400e;
+    }
+
+    .btn-back {
+        background: #e2e8f0;
+        color: #475569;
+        padding: 10px 24px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        display: inline-block;
+    }
+
+    .btn-back:hover {
+        background: #cbd5e1;
+        color: #1e293b;
+    }
+
+    .btn-action {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 24px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        display: inline-block;
+        margin-left: 15px;
+    }
+
+    .btn-action:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+
+    .btn-danger {
+        background: #ef4444;
+    }
+
+    .btn-danger:hover {
+        background: #dc2626;
+        box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .profile-header {
+            flex-direction: column;
+            text-align: center;
+        }
+        .profile-avatar {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+    }
+</style>
+
+<div class="container profile-container">
+    <!-- Заголовок профиля -->
+    <div class="profile-header">
+        <div style="display: flex; align-items: center;">
+            <div class="profile-avatar">
+                👮
+            </div>
+            <div class="profile-title">
+                <h1>{{ inspector.full_name }}</h1>
+                <p>Инспектор ДПС • {{ inspector.service_id|default:"удостоверение не указано" }}</p>
+            </div>
+        </div>
+        <div>
+            {% if inspector.is_dismissed %}
+                <span class="status-badge status-dismissed">🔒 Уволен</span>
+            {% else %}
+                <span class="status-badge status-active">✅ Активен</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">{{ stats.total_violations|default:"0" }}</div>
+            <div class="stat-label">Всего нарушений</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ stats.today_violations|default:"0" }}</div>
+            <div class="stat-label">Сегодня</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ stats.week_violations|default:"0" }}</div>
+            <div class="stat-label">За неделю</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ stats.total_fines|default:"0"|floatformat:0 }} ₽</div>
+            <div class="stat-label">Сумма штрафов</div>
+        </div>
+    </div>
+
+    <!-- Личная информация -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="info-card">
+                <h3> Личная информация</h3>
+                <div class="info-row">
+                    <span class="info-label">ФИО</span>
+                    <span class="info-value">{{ inspector.full_name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Дата рождения</span>
+                    <span class="info-value">{{ inspector.birth_date|date:"d.m.Y"|default:"не указана" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Телефон</span>
+                    <span class="info-value">{{ inspector.phone|default:"не указан" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Адрес</span>
+                    <span class="info-value">{{ inspector.address|default:"не указан"|truncatechars:50 }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Дата устройства</span>
+                    <span class="info-value">{{ inspector.date_joined|date:"d.m.Y" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="info-card">
+                <h3>Служебная информация</h3>
+                <div class="info-row">
+                    <span class="info-label">Номер удостоверения</span>
+                    <span class="info-value">{{ inspector.service_id|default:"не указан" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Логин</span>
+                    <span class="info-value">{{ inspector.username }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email</span>
+                    <span class="info-value">{{ inspector.email|default:"не указан" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Статус</span>
+                    <span class="info-value">
+                        {% if inspector.is_dismissed %}
+                            <span class="badge-status status-registered">Уволен</span>
+                            {% if inspector.dismissed_at %}
+                                <small class="text-muted"> с {{ inspector.dismissed_at|date:"d.m.Y" }}</small>
+                            {% endif %}
+                        {% else %}
+                            <span class="badge-status status-paid">Активен</span>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="violations-table">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; border-bottom: 1px solid #e2e8f0;">
+            <h3 style="margin: 0;"> Нарушения, зарегистрированные инспектором</h3>
+            <span class="text-muted">Всего: {{ violations|length }}</span>
+        </div>
+
+        {% if violations %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Госномер</th>
+                    <th>Статья</th>
+                    <th>Сумма</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in violations %}
+                <tr class="clickable-row" onclick="window.location='{% url 'fine_detail' v.pk %}'">
+                    <td>{{ v.created_at|date:"d.m.Y H:i" }}</td>
+                    <td><strong>{{ v.car_plate }}</strong></td>
+                    <td>{{ v.article }}</td>
+                    <td>{{ v.amount|floatformat:0 }} ₽</td>
+                    <td>
+                        {% if v.status == 'registered' or v.status == 'fixed' %}
+                            <span class="badge-status status-registered">Зарегистрировано</span>
+                        {% elif v.status == 'paid' %}
+                            <span class="badge-status status-paid">Оплачено</span>
+                        {% else %}
+                            <span class="badge-status status-appealed">Обжаловано</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+             Инспектор еще не зарегистрировал ни одного нарушения
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Кнопки -->
+    <div class="text-center mt-4 mb-5">
+        <a href="{% url 'manager_inspector_list' %}" class="btn-back">← Назад к списку</a>
+
+        {% if not inspector.is_dismissed %}
+            <a href="{% url 'manager_dismiss_inspector' inspector.id %}" class="btn-action btn-danger" style="background: #ef4444;">
+                🔒 Уволить сотрудника
+            </a>
+        {% else %}
+            <a href="{% url 'manager_reinstate_inspector' inspector.id %}" class="btn-action" style="background: #f59e0b;">
+                🔄 Восстановить сотрудника
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

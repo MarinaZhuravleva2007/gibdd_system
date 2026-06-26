@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Отчёт по районам{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>📍 Отчёт по районам нарушений</h2>
+            <p class="text-muted">Всего нарушений: {{ total_violations }}</p>
+        </div>
+        <a href="javascript:history.back()" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i> Назад
+        </a>
+    </div>
+
+    {% if district_data %}
+        <div class="row g-4">
+            {% for district in district_data %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="fw-bold mb-0" style="color: #1e293b;">
+                                <i class="fas fa-map-pin me-2" style="color: #dc3545;"></i>
+                                {{ district.place|default:"Не указано" }}
+                            </h5>
+                            <span class="badge bg-primary rounded-pill px-3 py-2">{{ district.count }} нарушений</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between text-muted small">
+                                <span>Сумма штрафов</span>
+                                <span class="fw-bold" style="color: #dc3545;">{{ district.total_amount|floatformat:0 }} ₽</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-danger" style="width: {% widthratio district.count district_data.0.count 100 %}%"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline-secondary btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#details-{{ forloop.counter }}">
+                            <i class="fas fa-chevron-down me-1"></i> Показать нарушения ({{ district.violations|length }})
+                        </button>
+
+                        <div class="collapse mt-3" id="details-{{ forloop.counter }}">
+                            {% for v in district.violations|slice:":10" %}
+                            <div class="list-group-item px-0 py-2 border-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold" style="font-family: monospace;">{{ v.car_plate }}</span>
+                                        <span class="badge bg-secondary ms-2">{{ v.article }}</span>
+                                    </div>
+                                    <span class="fw-bold" style="color: #dc3545;">{{ v.amount|floatformat:0 }} ₽</span>
+                                </div>
+                                <small class="text-muted">{{ v.created_at|date:"d.m.Y H:i" }}</small>
+                            </div>
+                            {% empty %}
+                            <p class="text-muted small">Нет нарушений</p>
+                            {% endfor %}
+                            {% if district.violations|length > 10 %}
+                                <small class="text-muted mt-2">+ ещё {{ district.violations|length|add:"-10" }} нарушений</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <div style="font-size: 4rem;">📭</div>
+            <h4>Нет данных о районах</h4>
+            <p class="text-muted">У вас пока нет зарегистрированных нарушений</p>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .progress-bar {
+        transition: width 0.3s;
+    }
+    .list-group-item:last-child {
+        border-bottom: none !important;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Восстановление уволенного сотрудника{% endblock %}
+
+{% block content %}
+<style>
+    .reinstate-card {
+        max-width: 600px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .reinstate-header {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        padding: 30px;
+        text-align: center;
+        color: white;
+    }
+
+    .reinstate-header h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .reinstate-header p {
+        opacity: 0.9;
+        margin: 0;
+    }
+
+    .reinstate-body {
+        padding: 30px;
+    }
+
+    .inspector-info {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .info-value {
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid;
+}
+
+.stat-item:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+}
+
+.stat-item:nth-child(1) {
+    border-bottom-color: #3b82f6;
+}
+.stat-item:nth-child(1) .stat-number {
+    color: #3b82f6;
+}
+
+.stat-item:nth-child(2) {
+    border-bottom-color: #f59e0b;
+}
+.stat-item:nth-child(2) .stat-number {
+    color: #f59e0b;
+}
+
+.stat-item:nth-child(3) {
+    border-bottom-color: #10b981;
+}
+.stat-item:nth-child(3) .stat-number {
+    color: #10b981;
+}
+
+    .info-box {
+        background: #dcfce7;
+        border-left: 4px solid #10b981;
+        padding: 15px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    .info-box p {
+        margin: 0;
+        color: #166534;
+        font-size: 0.9rem;
+    }
+
+    .info-box ul {
+        margin-top: 10px;
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+
+    .info-box li {
+        margin: 5px 0;
+        color: #166534;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        color: #475569;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn-cancel:hover {
+        background: #cbd5e1;
+        color: #1e293b;
+    }
+
+    .btn-reinstate {
+        background: #10b981;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-reinstate:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    .procedure-note {
+        background: #f1f5f9;
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #475569;
+    }
+</style>
+
+<div class="container">
+    <div class="reinstate-card">
+        <div class="reinstate-header">
+            <div style="font-size: 3rem;">🔄</div>
+            <h2>Восстановление сотрудника</h2>
+            <p>Возвращение полномочий в системе</p>
+        </div>
+
+        <div class="reinstate-body">
+            <div class="inspector-info">
+                <div class="info-row">
+                    <span class="info-label">ФИО сотрудника</span>
+                    <span class="info-value">{{ inspector.full_name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Должность</span>
+                    <span class="info-value">Инспектор ДПС</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Номер удостоверения</span>
+                    <span class="info-value">{{ inspector.service_id|default:"не указан" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Дата увольнения</span>
+                    <span class="info-value">{{ inspector.dismissed_at|date:"d.m.Y H:i"|default:"неизвестно" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Уволил</span>
+                    <span class="info-value">{{ inspector.dismissed_by.full_name|default:"руководитель" }}</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">{{ inspector.registered_violations.count }}</div>
+                    <div class="stat-label">Всего нарушений</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ inspector.registered_violations.filter.status.registered.count }}</div>
+                    <div class="stat-label">Неоплаченных</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ inspector.registered_violations.aggregate.total|default:"0"|floatformat:0 }} ₽</div>
+                    <div class="stat-label">Сумма штрафов</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><strong>✅ Восстановление означает возвращение сотруднику полномочий:</strong></p>
+                <ul>
+                    <li>Инспектор снова сможет создавать новые нарушения</li>
+                    <li>Все ранее созданные протоколы останутся в архиве</li>
+                    <li>Учетная запись будет разблокирована</li>
+                    <li>На главной странице инспектор увидит уведомление о восстановлении</li>
+                </ul>
+            </div>
+
+            <div class="procedure-note">
+                📋 <strong>Восстановление сотрудника</strong> производится на основании приказа руководителя подразделения
+            </div>
+
+            <form method="post" style="margin-top: 25px;">
+                {% csrf_token %}
+                <div class="btn-group">
+                    <a href="{% url 'manager_inspector_list' %}" class="btn-cancel">Отмена</a>
+                    <button type="submit" class="btn-reinstate">✅ Подтвердить восстановление</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
