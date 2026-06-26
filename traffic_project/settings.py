@@ -154,4 +154,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login'
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://marinazhuravleva1.pythonanywhere.com',
+    'http://marinazhuravleva1.pythonanywhere.com',
+]
 
+CSRF_COOKIE_SECURE = False  # Для http (не https)
