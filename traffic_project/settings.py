@@ -75,7 +75,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 EMAIL_HOST_USER = 'marina.zhuravleva.07@inbox.ru'
-EMAIL_HOST_PASSWORD = '7GXMy7xL9gYdQeka4jXh'
+EMAIL_HOST_PASSWORD = 'nl6PY3RoqyWjxSgQq9CP'
 DEFAULT_FROM_EMAIL = 'marina.zhuravleva.07@inbox.ru'
 WSGI_APPLICATION = 'traffic_project.wsgi.application'
 
