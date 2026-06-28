@@ -69,15 +69,7 @@ TEMPLATES = [
     },
 ]
 # Mail.ru
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.pythonanywhere.com'
-EMAIL_PORT = 25
-EMAIL_USE_SSL = True
-EMAIL_USE_TLS = False
-EMAIL_HOST_USER = 'MarinaZhuravleva1'
-EMAIL_HOST_PASSWORD = 'Mazh181007++'
-DEFAULT_FROM_EMAIL = 'no-reply@marinazhuravleva1.pythonanywhere.com'
-WSGI_APPLICATION = 'traffic_project.wsgi.application'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # логирование для отладки
 LOGGING = {
